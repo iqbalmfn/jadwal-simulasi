@@ -1,30 +1,22 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Master\LokasiController;
+use App\Http\Controllers\Master\PeriodeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', DashboardController::class)->name('index');
+
+    Route::prefix('master')->name('master.')->group(function () {
+        Route::resource('lokasi', LokasiController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('periode', PeriodeController::class)->only(['index', 'store', 'update', 'destroy']);
+    });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
