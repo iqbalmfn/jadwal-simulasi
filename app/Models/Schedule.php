@@ -4,14 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Ramsey\Uuid\Uuid;
 
 class Schedule extends Model
 {
     use HasFactory;
 
-    public $incrementing = false;
-    protected $keyType = 'string';
     protected $fillable = [
         'period_id',
         'location_id',
@@ -20,21 +17,11 @@ class Schedule extends Model
         'kuota'
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            if (!$model->getKey()) {
-                $model->{$model->getKeyName()} = (string) Uuid::uuid4();
-            }
-        });
-    }
-
     public function periode() {
-        return $this->belongsTo(Period::class);
+        return $this->belongsTo(Period::class, 'period_id', 'id');
     }
 
     public function lokasi() {
-        return $this->belongsTo(Location::class);
+        return $this->belongsTo(Location::class, 'location_id', 'id');
     }
 }

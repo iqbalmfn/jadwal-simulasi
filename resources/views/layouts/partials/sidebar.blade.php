@@ -78,7 +78,7 @@
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
-                                    <span class="menu-title">Periode</span>
+                                    <span class="menu-title text-white">Periode</span>
                                 </a>
                                 <!--end:Menu link-->
                             </div>
@@ -91,7 +91,7 @@
                     <!--begin:Menu item-->
                     <div class="menu-item {{ Request::is('admin/jadwal*') ? 'here' : '' }}">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="">
+                        <a class="menu-link" href="{{ route('admin.jadwal.index') }}">
                             <span class="menu-icon">
                                 <i class="ki-duotone ki-calendar-tick fs-2">
                                     <span class="path1"></span>
