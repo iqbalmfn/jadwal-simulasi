@@ -74,7 +74,7 @@
                             <td>{{ $data->periode->nama_periode }}</td>
                             <td>{{ $data->lokasi->name }}</td>
                             <td>{{ $data->nama_sesi }}</td>
-                            <td>{{ date('d M Y', strtotime($data->tanggal)) }}</td>
+                            <td>{{ formatTanggalIndonesia($data->tanggal) }}</td>
                             <td>{{ $data->kuota }} peserta</td>
                             <td class="text-end">
                                 <div class="d-flex justify-content-end gap-2">

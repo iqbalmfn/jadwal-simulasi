@@ -37,7 +37,7 @@ class LokasiController extends Controller
 
         Session::flash('success', 'Data berhasil disimpan');
 
-        return redirect()->back()->withInput();
+        return redirect()->back();
     }
 
     public function update(Request $request, Location $lokasi)

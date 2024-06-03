@@ -1,14 +1,18 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EndUserController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\Master\LokasiController;
 use App\Http\Controllers\Master\PeriodeController;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', EndUserController::class)->name('enduser.index');
+Route::prefix('pendaftaran')->name('pendaftaran.')->middleware('auth')->group(function () {
+    Route::post('/pilih-lokasi', [PendaftaranController::class, 'pilihLokasi'])->name('pilih-lokasi');
+    Route::get('/', [PendaftaranController::class, 'index'])->name('index');
 });
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {

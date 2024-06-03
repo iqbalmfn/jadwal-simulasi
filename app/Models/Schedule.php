@@ -24,4 +24,8 @@ class Schedule extends Model
     public function lokasi() {
         return $this->belongsTo(Location::class, 'location_id', 'id');
     }
+
+    public function peserta() {
+        return $this->hasMany(Biodata::class, 'schedule_id', 'id');
+    }
 }
