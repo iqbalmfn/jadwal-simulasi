@@ -18,6 +18,16 @@
     <!--end::Global Stylesheets Bundle-->
 
     <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .full-height {
+            height: 100vh;
+        }
+
         body {
             position: relative;
             margin: 0;
@@ -78,7 +88,7 @@
 </head>
 
 <body class="bg-gray-400">
-    <div class="d-flex align-items-center justify-content-center p-5 p-lg-20">
+    <div class="d-flex align-items-center justify-content-center p-5 p-lg-20 full-height">
         @yield('content')
     </div>
 

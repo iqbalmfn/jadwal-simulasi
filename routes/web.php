@@ -13,6 +13,8 @@ Route::get('/', EndUserController::class)->name('enduser.index');
 Route::prefix('pendaftaran')->name('pendaftaran.')->middleware('auth')->group(function () {
     Route::post('/pilih-lokasi', [PendaftaranController::class, 'pilihLokasi'])->name('pilih-lokasi');
     Route::get('/', [PendaftaranController::class, 'index'])->name('index');
+    Route::post('/', [PendaftaranController::class, 'store'])->name('store');
+    Route::get('{id}', [PendaftaranController::class, 'form'])->name('form');
 });
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {

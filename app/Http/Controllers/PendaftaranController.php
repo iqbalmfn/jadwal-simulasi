@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Biodata;
 use App\Models\Period;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 
 class PendaftaranController extends Controller
 {
@@ -40,16 +44,78 @@ class PendaftaranController extends Controller
                 ->whereHas('periode', function ($query) use ($session) {
                     $query->where('id', $session['period_id']);
                 })
-                ->with('periode')
+                ->with(['periode', 'lokasi'])
                 ->where('location_id', $session['location_id'])
                 ->groupBy('tanggal')
                 ->orderBy('tanggal')
                 ->get();
-    
+
             return view('enduser.pendaftaran.index', [
                 'dates' => $dates
             ]);
         }
+    }
 
+    public function form($id)
+    {
+        $schedule = Schedule::query()
+            ->whereId($id)
+            ->with(['periode', 'lokasi', 'peserta'])
+            ->first();
+
+        return view('enduser.pendaftaran.form', [
+            'schedule' => $schedule
+        ]);
+    }
+
+    public function store(Request $request) {
+        // baca schedule
+        $schedule = Schedule::query()
+            ->whereId($request->schedule_id)
+            ->with(['peserta'])
+            ->first();
+
+        // validasi input
+        $request->validate([
+            'schedule_id'   => 'required|numeric',
+            'nik'           => [
+                'required',
+                'numeric',
+                'digits:16',
+                function ($attribute, $value, $fail) use ($schedule) {
+                    // Periksa apakah ada NIK yang sama dalam tabel biodatas dengan periode_id yang sama
+                    $exists = DB::table('biodatas')
+                        ->join('schedules', 'biodatas.schedule_id', '=', 'schedules.id')
+                        ->where('biodatas.nik', $value)
+                        ->where('schedules.period_id', $schedule->period_id)
+                        ->exists();
+
+                    if ($exists) {
+                        $fail('NIK sudah ada untuk periode yang sama.');
+                    }
+                },
+            ],
+            'nama_lengkap'  => 'required',
+            'alamat'        => 'required',
+            'email'         => 'required|email', 
+            'no_hp'         => 'required|numeric',
+        ]);
+
+        $input = $request->all();
+        $input['ip'] = $request->ip();
+
+        if ($schedule->kuota <= $schedule->peserta->count()) {
+            Session::flash('error', 'Jumlah peserta sudah penuh');
+
+            return redirect()->back();
+        } else {
+            $schedule->peserta()->create($input);
+
+            Session::flash('success', 'Anda berhasil mendaftar');
+
+            return redirect()->back();
+        }
+
+        return $input;
     }
 }

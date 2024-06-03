@@ -1,4 +1,4 @@
-@extends('layouts.app-enduser')
+@extends('layouts.app-enduser-index')
 
 @section('content')
     <div class="bg-body d-flex flex-column align-items-stretch flex-center rounded-4 w-md-600px p-20">
