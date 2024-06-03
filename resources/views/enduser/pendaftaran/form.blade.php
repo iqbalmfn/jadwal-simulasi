@@ -101,13 +101,13 @@
 
                                     <!--begin::Content-->
                                     <div class="mb-9 text-gray-900">
-                                        Anda tidak dapat mendaftar pada sesi ini, silahkan pilih sesi lain yang masih tersedia.
+                                        Maaf, jadwal yang Anda pilih sudah tidak tersedia. Silahkan kembali ke halaman penjadwalan.
                                     </div>
                                     <!--end::Content-->
 
                                     <!--begin::Buttons-->
                                     <div class="d-flex flex-center flex-wrap">
-                                        <a href="{{ route('pendaftaran.index') }}" class="btn btn-danger m-2">Mengerti</a>
+                                        <a href="{{ route('pendaftaran.index') }}" class="btn btn-danger m-2">Penjadwalan</a>
                                     </div>
                                     <!--end::Buttons-->
                                 </div>

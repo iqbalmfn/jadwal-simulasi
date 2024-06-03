@@ -18,7 +18,7 @@ class Biodata extends Model
         'nik',
         'nama_lengkap',
         'alamat',
-        'emaail',
+        'email',
         'no_hp'
     ];
 
