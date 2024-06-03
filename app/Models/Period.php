@@ -14,7 +14,7 @@ class Period extends Model
         'is_active'
     ];
 
-    public function lokasi() {
-        return $this->hasMany(Location::class);
+    public function location_available() {
+        return $this->hasMany(locationAvailable::class);
     }
 }

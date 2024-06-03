@@ -16,6 +16,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::prefix('master')->name('master.')->group(function () {
         Route::resource('lokasi', LokasiController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::resource('periode', PeriodeController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::get('periode/{periode}/status', [PeriodeController::class, 'setStatus'])->name('periode.set-status');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

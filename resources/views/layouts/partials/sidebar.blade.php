@@ -62,11 +62,11 @@
                             <!--begin:Menu item-->
                             <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <a class="menu-link {{ Request::is('admin/master/lokasi*') ? 'active' : '' }}" href="{{ route('admin.master.lokasi.index') }}">
+                                <a class="menu-link bg-hover-template {{ Request::is('admin/master/lokasi*') ? 'active' : '' }}" href="{{ route('admin.master.lokasi.index') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
-                                    <span class="menu-title">Lokasi</span>
+                                    <span class="menu-title text-white">Lokasi</span>
                                 </a>
                                 <!--end:Menu link-->
                             </div>
@@ -74,7 +74,7 @@
                             <!--begin:Menu item-->
                             <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <a class="menu-link {{ Request::is('admin/master/periode*') ? 'active' : '' }}" href="">
+                                <a class="menu-link bg-hover-template {{ Request::is('admin/master/periode*') ? 'active' : '' }}" href="{{ route('admin.master.periode.index') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>

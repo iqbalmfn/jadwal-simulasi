@@ -129,6 +129,7 @@
     --bs-form-valid-border-color: #50cd89;
     --bs-form-invalid-color: #f1416c;
     --bs-form-invalid-border-color: #f1416c;
+    --bs-hover-template:  #135D66;
 }
 [data-bs-theme="dark"] {
     color-scheme: dark;
@@ -47458,6 +47459,12 @@ label.rating-label:hover ~ .rating-label > i {
 .bg-state-light-primary.active,
 .bg-state-light-primary:hover {
     background-color: var(--bs-primary-light) !important;
+}
+.bg-hover-template {
+    cursor: pointer;
+}
+.bg-hover-template:hover {
+    background-color: var(--bs-hover-template) !important;
 }
 .bg-hover-primary {
     cursor: pointer;

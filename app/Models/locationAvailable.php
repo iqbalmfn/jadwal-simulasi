@@ -11,14 +11,14 @@ class locationAvailable extends Model
 
     protected $fillable =[
         'period_id',
-        'schedule_id'
+        'location_id'
     ];
 
     public function periode() {
         return $this->belongsTo(Period::class);
     }
 
-    public function jadwal() {
-        return $this->belongsTo(Schedule::class);
+    public function lokasi() {
+        return $this->belongsTo(Location::class, 'location_id', 'id');
     }
 }
