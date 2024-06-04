@@ -27,7 +27,7 @@
 
 @section('content')
     <!--begin::Row-->
-    <div class="row g-5 gx-xl-10 mb-5 mb-xl-10">
+    {{-- <div class="row g-5 gx-xl-10 mb-5 mb-xl-10">
         <!--begin::Col-->
         <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
             <!--begin::Card widget 20-->
@@ -403,6 +403,9 @@
             <!--end::Engage widget 10-->
         </div>
         <!--end::Col-->
+    </div> --}}
+    <div class="d-flex justify-content-center border border-gray-500 rounded p-10">
+        <h1>Selamat datang di Aplikasi Jadwal Simulasi CAT Kanreg III BKN Bandung</h1>
     </div>
     <!--end::Row-->
 @endsection

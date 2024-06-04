@@ -111,7 +111,7 @@
                     <!--begin:Menu item-->
                     <div class="menu-item {{ Request::is('admin/peserta*') ? 'here' : '' }}">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="">
+                        <a class="menu-link" href="{{ route('admin.peserta.index') }}">
                             <span class="menu-icon">
                                 <i class="ki-duotone ki-people fs-2">
                                     <span class="path1"></span>
