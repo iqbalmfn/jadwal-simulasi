@@ -41,19 +41,32 @@ class PendaftaranController extends Controller
         if (!isset($session['period_id']) && !isset($session['location_id'])) {
             return redirect()->route('enduser.index');
         } else {
-            $dates = Schedule::query()
-                ->whereHas('periode', function ($query) use ($session) {
-                    $query->where('id', $session['period_id']);
+             // baca IP & periode, apakah sudah mendaftar atau belum
+            $ip = request()->ip();
+            $peserta = Biodata::query()
+                ->whereIp($ip)
+                ->whereHas('jadwal', function ($query) use ($session) {
+                    $query->wherePeriodId($session['period_id']);
                 })
-                ->with(['periode', 'lokasi'])
-                ->where('location_id', $session['location_id'])
-                ->groupBy('tanggal')
-                ->orderBy('tanggal')
-                ->get();
+                ->first();
 
-            return view('enduser.pendaftaran.index', [
-                'dates' => $dates
-            ]);
+            if ($peserta) {
+                return redirect()->route('pendaftaran.success', ['id' => $peserta->id]);
+            } else {
+                $dates = Schedule::query()
+                    ->whereHas('periode', function ($query) use ($session) {
+                        $query->where('id', $session['period_id']);
+                    })
+                    ->with(['periode', 'lokasi'])
+                    ->where('location_id', $session['location_id'])
+                    ->groupBy('tanggal')
+                    ->orderBy('tanggal')
+                    ->get();
+    
+                return view('enduser.pendaftaran.index', [
+                    'dates' => $dates
+                ]);
+            }
         }
     }
 

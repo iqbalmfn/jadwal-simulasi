@@ -31,6 +31,25 @@ class EndUserController extends Controller
             })
             ->count();
 
+        // baca IP & periode, apakah sudah mendaftar atau belum
+        $ip = request()->ip();
+        $peserta = Biodata::query()
+            ->whereIp($ip)
+            ->whereHas('jadwal', function ($query) use ($period) {
+                $query->wherePeriodId($period->id);
+            })
+            ->first();
+
+        if ($peserta) {
+            return redirect()->route('pendaftaran.success', ['id' => $peserta->id]);
+        } else {
+            return view('enduser.index', [
+                'period' => $period,
+                'totalKuota' => $totalKuota,
+                'totalPeserta' => $totalPeserta,
+            ]);
+        }
+
         return view('enduser.index', [
             'period' => $period,
             'totalKuota' => $totalKuota,
