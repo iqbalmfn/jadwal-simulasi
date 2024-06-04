@@ -31,6 +31,21 @@ class EndUserController extends Controller
             })
             ->count();
 
+        // baca data apakah sudah mendaftar atau belum
+        $peserta = Biodata::query()
+            ->whereId(session('id'))
+            ->first();
+
+        if ($peserta) {
+            return redirect()->route('pendaftaran.success', ['id' => $peserta->id]);
+        } else {
+            return view('enduser.index', [
+                'period' => $period,
+                'totalKuota' => $totalKuota,
+                'totalPeserta' => $totalPeserta,
+            ]);
+        }
+
         return view('enduser.index', [
             'period' => $period,
             'totalKuota' => $totalKuota,

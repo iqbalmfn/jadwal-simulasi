@@ -113,6 +113,8 @@ class PendaftaranController extends Controller
         } else {
             $peserta = Biodata::create($input);
 
+            session(['id' => $peserta->id]);
+
             Session::flash('success', 'Anda berhasil mendaftar');
 
             return redirect()->route('pendaftaran.success', ['id' => $peserta->id]);
