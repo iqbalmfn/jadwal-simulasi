@@ -19,7 +19,7 @@
                     @error('username')
                         <div class="alert alert-danger d-flex align-items-center p-5 mb-8">
                             <i class="bi bi-exclamation-octagon fs-1 text-danger me-4"></i>
-                            <div class="d-flex flex-column">
+                            <div class="d-flex flex-column align-items-start">
                                 <h4 class="mb-1 text-danger">Gagal Login</h4>
                                 <span>Username atau password tidak sesuai!</span>
                             </div>
@@ -29,11 +29,22 @@
                     <div class="text-center mb-11">
                         <h1 class="text-dark fw-bolder mb-3">Aplikasi Jadwal Simulasi</h1>
                     </div>
-                    
+
+                    @if ($totalKuota <= $totalPeserta)
+                        <div class="alert alert-danger d-flex align-items-center p-5 mb-8">
+                            <i class="bi bi-exclamation-octagon fs-1 text-danger me-4"></i>
+                            <div class="d-flex flex-column align-items-start">
+                                <h4 class="mb-1 text-danger">Tidak Tersedia</h4>
+                                <span>Kuota telah terpenuhi</span>
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="fv-row mb-8">
                         <select type="text" name="location_id"
                             class="form-control @error('location_id') is-invalid @enderror"
-                            placeholder="Masukkan Nama Lokasi" value="{{ old('location_id') }}" required>
+                            placeholder="Masukkan Nama Lokasi" value="{{ old('location_id') }}" required
+                            {{ $totalKuota <= $totalPeserta ? 'disabled' : '' }}>
                             <option value="" selected disabled>-- Pilih Lokasi Simulasi --</option>
                             @foreach ($period->location_available as $location)
                                 <option value="{{ $location->location_id }}">{{ $location->lokasi->name }}</option>
@@ -45,9 +56,10 @@
                             </small>
                         @enderror
                     </div>
-                   
+
                     <div class="d-grid mb-10">
-                        <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+                        <button type="submit" id="kt_sign_in_submit" class="btn btn-primary"
+                            {{ $totalKuota <= $totalPeserta ? 'disabled' : '' }}>
                             <span class="indicator-label">Daftar</span>
                         </button>
                     </div>
