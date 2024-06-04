@@ -41,32 +41,19 @@ class PendaftaranController extends Controller
         if (!isset($session['period_id']) && !isset($session['location_id'])) {
             return redirect()->route('enduser.index');
         } else {
-             // baca IP & periode, apakah sudah mendaftar atau belum
-            $ip = request()->ip();
-            $peserta = Biodata::query()
-                ->whereIp($ip)
-                ->whereHas('jadwal', function ($query) use ($session) {
-                    $query->wherePeriodId($session['period_id']);
+            $dates = Schedule::query()
+                ->whereHas('periode', function ($query) use ($session) {
+                    $query->where('id', $session['period_id']);
                 })
-                ->first();
+                ->with(['periode', 'lokasi'])
+                ->where('location_id', $session['location_id'])
+                ->groupBy('tanggal')
+                ->orderBy('tanggal')
+                ->get();
 
-            if ($peserta) {
-                return redirect()->route('pendaftaran.success', ['id' => $peserta->id]);
-            } else {
-                $dates = Schedule::query()
-                    ->whereHas('periode', function ($query) use ($session) {
-                        $query->where('id', $session['period_id']);
-                    })
-                    ->with(['periode', 'lokasi'])
-                    ->where('location_id', $session['location_id'])
-                    ->groupBy('tanggal')
-                    ->orderBy('tanggal')
-                    ->get();
-    
-                return view('enduser.pendaftaran.index', [
-                    'dates' => $dates
-                ]);
-            }
+            return view('enduser.pendaftaran.index', [
+                'dates' => $dates
+            ]);
         }
     }
 
@@ -160,9 +147,9 @@ class PendaftaranController extends Controller
         $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', "", $qrcode); //replace to empty
 
         if (strpos($data->jadwal->lokasi->name, "Bandung") !== false) {
-            $tanggal = "Bandung, ".formatTanggalIndonesia($data->created_at);
+            $tanggal = "Bandung, " . formatTanggalIndonesia($data->created_at);
         } else {
-            $tanggal = "Serang, ".formatTanggalIndonesia($data->created_at);
+            $tanggal = "Serang, " . formatTanggalIndonesia($data->created_at);
         }
 
         // Render view menjadi HTML
@@ -184,12 +171,13 @@ class PendaftaranController extends Controller
             ->header('Content-Type', 'application/pdf');
     }
 
-    public function verifikasi($id) {
-       // Baca data biodata pendaftaran
-       $data = Biodata::with('jadwal.lokasi')->find($id);
+    public function verifikasi($id)
+    {
+        // Baca data biodata pendaftaran
+        $data = Biodata::with('jadwal.lokasi')->find($id);
 
-       return view('enduser.verifikasi', [
-        'data' => $data
-    ]);
+        return view('enduser.verifikasi', [
+            'data' => $data
+        ]);
     }
 }
