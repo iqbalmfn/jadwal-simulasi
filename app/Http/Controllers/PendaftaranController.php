@@ -8,7 +8,8 @@ use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\Rule;
+use Mpdf\Mpdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PendaftaranController extends Controller
 {
@@ -68,7 +69,8 @@ class PendaftaranController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         // baca schedule
         $schedule = Schedule::query()
             ->whereId($request->schedule_id)
@@ -97,7 +99,7 @@ class PendaftaranController extends Controller
             ],
             'nama_lengkap'  => 'required',
             'alamat'        => 'required',
-            'email'         => 'required|email', 
+            'email'         => 'required|email',
             'no_hp'         => 'required|numeric',
         ]);
 
@@ -109,13 +111,72 @@ class PendaftaranController extends Controller
 
             return redirect()->back();
         } else {
-            $schedule->peserta()->create($input);
+            $peserta = Biodata::create($input);
 
             Session::flash('success', 'Anda berhasil mendaftar');
 
-            return redirect()->back();
+            return redirect()->route('pendaftaran.success', ['id' => $peserta->id]);
+        }
+    }
+
+    public function success($id)
+    {
+        // baca data biodata pendaftaran
+        $data = Biodata::query()
+            ->with('jadwal.lokasi')
+            ->whereId($id)
+            ->first();
+
+        return view('enduser.pendaftaran.success', [
+            'data' => $data
+        ]);
+    }
+
+    public function print($id)
+    {
+        // Baca data biodata pendaftaran
+        $data = Biodata::with('jadwal.lokasi')->find($id);
+
+        // Jika data tidak ditemukan
+        if (!$data) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
 
-        return $input;
+        // cetak QRCode
+        $qrcode = QrCode::encoding('UTF-8')->size(150)->generate(route('verifikasi.index', ['id' => $data->id]));
+        $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', "", $qrcode); //replace to empty
+
+        if (strpos($data->jadwal->lokasi->name, "Bandung") !== false) {
+            $tanggal = "Bandung, ".formatTanggalIndonesia($data->jadwal->tanggal);
+        } else {
+            $tanggal = "Serang, ".formatTanggalIndonesia($data->jadwal->tanggal);
+        }
+
+        // Render view menjadi HTML
+        $html = view('print.pdf.pendaftaran', [
+            'title' => $data->nik . '_BuktiPendaftaran',
+            'data' => $data,
+            'qrcode' => $qrcode,
+            'tanggal' => $tanggal
+        ])->render();
+
+        // Buat instance mPDF
+        $mpdf = new Mpdf();
+
+        // Tambahkan HTML ke mPDF
+        $mpdf->WriteHTML($html);
+
+        // Output PDF
+        return response($mpdf->Output($data->nik . '_BuktiPendaftaran.pdf', 'I'), 200)
+            ->header('Content-Type', 'application/pdf');
+    }
+
+    public function verifikasi($id) {
+       // Baca data biodata pendaftaran
+       $data = Biodata::with('jadwal.lokasi')->find($id);
+
+       return view('enduser.verifikasi', [
+        'data' => $data
+    ]);
     }
 }

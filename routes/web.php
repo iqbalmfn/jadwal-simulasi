@@ -10,12 +10,15 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', EndUserController::class)->name('enduser.index');
-Route::prefix('pendaftaran')->name('pendaftaran.')->middleware('auth')->group(function () {
+Route::prefix('pendaftaran')->name('pendaftaran.')->group(function () {
     Route::post('/pilih-lokasi', [PendaftaranController::class, 'pilihLokasi'])->name('pilih-lokasi');
     Route::get('/', [PendaftaranController::class, 'index'])->name('index');
     Route::post('/', [PendaftaranController::class, 'store'])->name('store');
     Route::get('{id}', [PendaftaranController::class, 'form'])->name('form');
+    Route::get('/success/{id}', [PendaftaranController::class, 'success'])->name('success');
+    Route::get('/print/{id}', [PendaftaranController::class, 'print'])->name('print');
 });
+Route::get('verifikasi/{id}', [PendaftaranController::class, 'verifikasi'])->name('verifikasi.index');
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', DashboardController::class)->name('index');

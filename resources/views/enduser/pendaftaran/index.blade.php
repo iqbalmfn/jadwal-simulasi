@@ -101,5 +101,9 @@
             @empty
             @endforelse
         </div>
+
+        <div class="d-flex justify-content-center px-lg-10 mt-20">
+            <p>2024 &copy; made with ❤️ by <a href="">Kanreg III BKN</a></p>
+        </div>
     </div>
 @endsection

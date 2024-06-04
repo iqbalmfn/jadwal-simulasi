@@ -33,6 +33,6 @@ class Biodata extends Model
     }
 
     public function jadwal() {
-        return $this->belongsTo(Schedule::class);
+        return $this->belongsTo(Schedule::class, 'schedule_id', 'id');
     }
 }

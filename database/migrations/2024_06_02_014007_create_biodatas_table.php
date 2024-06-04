@@ -15,10 +15,10 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignId('schedule_id')->constrained();
             $table->string('ip');
-            $table->string('nik')->unique();
+            $table->string('nik');
             $table->string('nama_lengkap');
             $table->text('alamat');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('no_hp');
             $table->timestamps();
         });
