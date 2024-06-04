@@ -60,6 +60,10 @@
                         <td>{{ $data->jadwal->nama_sesi }}</td>
                     </tr>
                     <tr>
+                        <th>Tanggal Registrasi</th>
+                        <td>{{ formatTanggalIndonesia($data->created_at) }}</td>
+                    </tr>
+                    <tr>
                         <th>Status</th>
                         <td><span class="badge badge-success"><i class="bi bi-patch-check me-2 text-white"></i> Terdaftar</span></td>
                     </tr>
