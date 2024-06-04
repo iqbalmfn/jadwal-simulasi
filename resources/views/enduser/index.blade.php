@@ -70,7 +70,7 @@
                 </div>
                 <div class="alert alert-danger d-flex align-items-center p-5 mb-8 w-100">
                     <i class="bi bi-ban fs-1 text-danger me-4"></i>
-                    <div class="d-flex flex-column">
+                    <div class="d-flex align-items-start flex-column">
                         <h4 class="mb-1 text-danger">Forbidden</h4>
                         <span>Tidak ada periode yang aktif!</span>
                     </div>

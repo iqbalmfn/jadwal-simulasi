@@ -16,20 +16,23 @@ class EndUserController extends Controller
             ->with('location_available.lokasi.jadwal')
             ->first();
 
-        // Lakukan perhitungan total kuota dari semua jadwal
         $totalKuota = 0;
-        foreach ($period->location_available as $location) {
-            foreach ($location->lokasi->jadwal as $jadwal) {
-                $totalKuota += $jadwal->kuota;
-            }
-        }
+        $totalPeserta = 0;
 
-        // lakukan perhitungan total pendaftar
-        $totalPeserta = Biodata::query()
-            ->whereHas('jadwal', function ($query) use ($period) {
-                $query->wherePeriodId($period->id);
-            })
-            ->count();
+        if ($period) {
+            // Lakukan perhitungan total kuota dari semua jadwal
+            foreach ($period->location_available as $location) {
+                foreach ($location->lokasi->jadwal as $jadwal) {
+                    $totalKuota += $jadwal->kuota;
+                }
+            }
+            // lakukan perhitungan total pendaftar
+            $totalPeserta = Biodata::query()
+                ->whereHas('jadwal', function ($query) use ($period) {
+                    $query->wherePeriodId($period->id);
+                })
+                ->count();
+        }
 
         // baca data apakah sudah mendaftar atau belum
         $peserta = Biodata::query()
