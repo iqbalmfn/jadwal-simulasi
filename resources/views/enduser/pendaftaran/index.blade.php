@@ -10,7 +10,8 @@
         <div class="d-flex justify-content-between align-items-center">
             @if (!$agent->isMobile())
                 <div>
-                    <h1><i class="bi bi-pin-map-fill fs-2 text-dark me-2"></i> Titik Lokasi {{ $dates[0]->lokasi->name }}
+                    <h1><i class="bi bi-pin-map-fill fs-2 text-dark me-2"></i> Titik Lokasi
+                        {{ $dates->count() >= 1 ? $dates[0]->lokasi->name : '-' }}
                     </h1>
                 </div>
             @endif
@@ -29,17 +30,20 @@
 
         @if ($agent->isMobile())
             <div class="mb-5">
-                <h1><i class="bi bi-pin-map-fill fs-2 text-dark me-2"></i> Titik Lokasi {{ $dates[0]->lokasi->name }}
+                <h1><i class="bi bi-pin-map-fill fs-2 text-dark me-2"></i> Titik Lokasi
+                    {{ $dates->count() >= 1 ? $dates[0]->lokasi->name : '-' }}
                 </h1>
             </div>
         @endif
 
-        <div class="alert alert-primary d-flex justify-content-center align-items-center p-5 mb-8">
-            <i class="bi bi-info-circle fs-1 text-primary me-4"></i>
-            <div class="d-flex flex-column align-items-center">
-                <span>Silahkan pilih tanggal dan sesi yang tersedia</span>
+        @if ($dates->count() >= 1)
+            <div class="alert alert-primary d-flex justify-content-center align-items-center p-5 mb-8">
+                <i class="bi bi-info-circle fs-1 text-primary me-4"></i>
+                <div class="d-flex flex-column align-items-center">
+                    <span>Silahkan pilih tanggal dan sesi yang tersedia</span>
+                </div>
             </div>
-        </div>
+        @endif
 
         <div class="row d-flex justify-content-center">
             @forelse ($dates as $date)
@@ -63,8 +67,7 @@
                                 <div class="card mb-5 shadow">
                                     @if ($schedule->kuota <= $schedule->peserta->count())
                                         <div class="overlay">
-                                            <div
-                                                class="d-flex flex-column justify-content-center align-items-center h-100">
+                                            <div class="d-flex flex-column justify-content-center align-items-center h-100">
                                                 <i class="bi bi-ban text-danger" style="font-size:75px;"></i>
                                                 <span class="fw-bolder text-danger fs-2hx">Penuh</span>
                                             </div>
@@ -82,10 +85,12 @@
                                         </div>
                                     </div>
                                     <div class="card-footer d-grid">
-                                        <a href="{{ route('pendaftaran.form', ['id' => $schedule->id]) }}" class="btn btn-primary"
+                                        <a href="{{ route('pendaftaran.form', ['id' => $schedule->id]) }}"
+                                            class="btn btn-primary"
                                             {{ $schedule->kuota <= $schedule->peserta->count() ? 'disabled' : '' }}>
                                             <div class="d-flex justify-content-center align-items-center gap-3">
-                                                <i class="bi bi-{{ $schedule->kuota <= $schedule->peserta->count() ? 'ban' : 'check-circle' }}"></i>
+                                                <i
+                                                    class="bi bi-{{ $schedule->kuota <= $schedule->peserta->count() ? 'ban' : 'check-circle' }}"></i>
                                                 <span class="indicator-label">
                                                     {{ $schedule->kuota <= $schedule->peserta->count() ? 'Penuh' : 'Pilih' }}
                                                 </span>
@@ -99,6 +104,37 @@
                     </div>
                 </div>
             @empty
+                <div
+                    class="alert alert-dismissible bg-light-danger d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
+                    <!--begin::Icon-->
+                    <i class="ki-duotone ki-information-5 fs-5tx text-danger mb-5"><span class="path1"></span><span
+                            class="path2"></span><span class="path3"></span></i>
+                    <!--end::Icon-->
+
+                    <!--begin::Wrapper-->
+                    <div class="text-center">
+                        <!--begin::Title-->
+                        <h1 class="fw-bold mb-5 text-danger">Belum tersedia</h1>
+                        <!--end::Title-->
+
+                        <!--begin::Separator-->
+                        <div class="separator separator-dashed border-danger opacity-25 mb-5"></div>
+                        <!--end::Separator-->
+
+                        <!--begin::Content-->
+                        <div class="mb-9 text-gray-900">
+                            Belum ada jadwal simulasi CAT yang tersedia.
+                        </div>
+                        <!--end::Content-->
+
+                        <!--begin::Buttons-->
+                        <div class="d-flex flex-center flex-wrap">
+                            <a href="{{ route('enduser.index') }}" class="btn btn-danger m-2">Pilih Lokasi</a>
+                        </div>
+                        <!--end::Buttons-->
+                    </div>
+                    <!--end::Wrapper-->
+                </div>
             @endforelse
         </div>
 

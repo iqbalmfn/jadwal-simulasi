@@ -147,9 +147,9 @@ class PendaftaranController extends Controller
         $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', "", $qrcode); //replace to empty
 
         if (strpos($data->jadwal->lokasi->name, "Bandung") !== false) {
-            $tanggal = "Bandung, ".formatTanggalIndonesia($data->jadwal->tanggal);
+            $tanggal = "Bandung, ".formatTanggalIndonesia($data->created_at);
         } else {
-            $tanggal = "Serang, ".formatTanggalIndonesia($data->jadwal->tanggal);
+            $tanggal = "Serang, ".formatTanggalIndonesia($data->created_at);
         }
 
         // Render view menjadi HTML
