@@ -32,12 +32,11 @@ class EndUserController extends Controller
             ->count();
 
         // baca IP & periode, apakah sudah mendaftar atau belum
-        $ip = request()->ip();
         $peserta = Biodata::query()
-            ->whereIp($ip)
             ->whereHas('jadwal', function ($query) use ($period) {
-                $query->wherePeriodId($period->id);
+                $query->wherePeriodId(session('period_id'));
             })
+            ->orderByDesc('created_at')
             ->first();
 
         if ($peserta) {
