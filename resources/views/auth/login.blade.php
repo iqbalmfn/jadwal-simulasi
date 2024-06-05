@@ -48,7 +48,7 @@
                 </form>
             </div>
             <div class="d-flex justify-content-center px-lg-10">
-                <p>2024 &copy; made with ❤️ by <a href="">Kanreg III BKN</a></p>
+                <p>2024 &copy; made with ❤️ by <a href="http://kanreg3.id" target="_blank">Kanreg III BKN Bandung</a></p>
             </div>
         </div>
     </div>
