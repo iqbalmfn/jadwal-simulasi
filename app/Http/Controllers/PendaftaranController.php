@@ -16,10 +16,7 @@ class PendaftaranController extends Controller
     public function pilihLokasi(Request $request)
     {
         // cek periode aktif
-        $checkPeriod = Period::query()
-            ->whereId($request->period_id)
-            ->whereIsActive(1)
-            ->first();
+        $checkPeriod = $this->checkPeriodeAktif($request->period_id);
 
         if (!$checkPeriod) {
             return redirect()->back();
@@ -38,30 +35,37 @@ class PendaftaranController extends Controller
             'location_id' => session('location_id')
         ];
 
-        if (!isset($session['period_id']) && !isset($session['location_id'])) {
+        // cek periode aktif
+        $checkPeriod = $this->checkPeriodeAktif($session['period_id']);
+
+        if (!$checkPeriod) {
             return redirect()->route('enduser.index');
         } else {
-            // baca data apakah sudah mendaftar atau belum
-            $peserta = Biodata::query()
-                ->whereId(session('id'))
-                ->first();
-
-            if ($peserta) {
-                return redirect()->route('pendaftaran.success', ['id' => $peserta->id]);
+            if (!isset($session['period_id']) && !isset($session['location_id'])) {
+                return redirect()->route('enduser.index');
             } else {
-                $dates = Schedule::query()
-                    ->whereHas('periode', function ($query) use ($session) {
-                        $query->where('id', $session['period_id']);
-                    })
-                    ->with(['periode', 'lokasi'])
-                    ->where('location_id', $session['location_id'])
-                    ->groupBy('tanggal')
-                    ->orderBy('tanggal')
-                    ->get();
+                // baca data apakah sudah mendaftar atau belum
+                $peserta = Biodata::query()
+                    ->whereId(session('id'))
+                    ->first();
 
-                return view('enduser.pendaftaran.index', [
-                    'dates' => $dates
-                ]);
+                if ($peserta) {
+                    return redirect()->route('pendaftaran.success', ['id' => $peserta->id]);
+                } else {
+                    $dates = Schedule::query()
+                        ->whereHas('periode', function ($query) use ($session) {
+                            $query->where('id', $session['period_id']);
+                        })
+                        ->with(['periode', 'lokasi'])
+                        ->where('location_id', $session['location_id'])
+                        ->groupBy('tanggal')
+                        ->orderBy('tanggal')
+                        ->get();
+
+                    return view('enduser.pendaftaran.index', [
+                        'dates' => $dates
+                    ]);
+                }
             }
         }
     }

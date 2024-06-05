@@ -4,10 +4,10 @@
     <div class="bg-body d-flex flex-column align-items-stretch flex-center rounded-4 w-md-600px p-20">
         <div class="row mb-20 px-lg-10 ">
             <div class="col-12 col-md-6 d-flex align-items-center">
-                <img src="/assets/images/KANREG3-BKN-1-768x204.png" alt="logo BKN" class="w-100">
+                <img src="{{ asset('assets/images/KANREG3-BKN-1-768x204.png') }}" alt="logo BKN" class="w-100">
             </div>
             <div class="col-12 col-md-6 d-flex align-items-center">
-                <img src="/assets/images/Logo_berakhlak_bangga-1024x390.png" alt="logo Berakhlak" class="w-100">
+                <img src="{{ asset('assets/images/Logo_berakhlak_bangga-1024x390.png') }}" alt="logo Berakhlak" class="w-100">
             </div>
         </div>
         <div class="d-flex flex-center flex-column flex-column-fluid px-lg-10 pb-15 pb-lg-20">
