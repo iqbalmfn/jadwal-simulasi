@@ -11,7 +11,7 @@
             @if (!$agent->isMobile())
                 <div>
                     <h1><i class="bi bi-pin-map-fill fs-2 text-dark me-2"></i> Titik Lokasi
-                        {{ $dates->count() >= 1 ? $dates[0]->lokasi->name : '-' }}
+                        {{ $lokasi->name }}
                     </h1>
                 </div>
             @endif
@@ -31,7 +31,7 @@
         @if ($agent->isMobile())
             <div class="mb-5">
                 <h1><i class="bi bi-pin-map-fill fs-2 text-dark me-2"></i> Titik Lokasi
-                    {{ $dates->count() >= 1 ? $dates[0]->lokasi->name : '-' }}
+                    {{ $lokasi->name }}
                 </h1>
             </div>
         @endif

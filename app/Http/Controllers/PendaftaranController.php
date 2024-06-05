@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Biodata;
-use App\Models\Period;
+use App\Models\Location;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -52,6 +52,9 @@ class PendaftaranController extends Controller
                 if ($peserta) {
                     return redirect()->route('pendaftaran.success', ['id' => $peserta->id]);
                 } else {
+                    // baca titik lokasi
+                    $lokasi = Location::find($session['location_id']);
+
                     $dates = Schedule::query()
                         ->whereHas('periode', function ($query) use ($session) {
                             $query->where('id', $session['period_id']);
@@ -63,7 +66,8 @@ class PendaftaranController extends Controller
                         ->get();
 
                     return view('enduser.pendaftaran.index', [
-                        'dates' => $dates
+                        'dates'     => $dates,
+                        'lokasi'    => $lokasi
                     ]);
                 }
             }
