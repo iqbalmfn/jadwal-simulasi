@@ -63,6 +63,7 @@
                         <th>Nama Lokasi</th>
                         <th>Nama Sesi</th>
                         <th>Tanggal</th>
+                        <th>Jam</th>
                         <th width="7%">Kuota</th>
                         <th class="text-end">Aksi</th>
                     </tr>
@@ -75,6 +76,7 @@
                             <td>{{ $data->lokasi->name }}</td>
                             <td>{{ $data->nama_sesi }}</td>
                             <td>{{ formatTanggalIndonesia($data->tanggal) }}</td>
+                            <td>{{ date('H:i', strtotime($data->tanggal)) }} WIB</td>
                             <td>{{ $data->kuota }} peserta</td>
                             <td class="text-end">
                                 <div class="d-flex justify-content-end gap-2">

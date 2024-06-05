@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('period_id')->constrained();
             $table->foreignId('location_id')->constrained();
             $table->string('nama_sesi');
-            $table->date('tanggal');
+            $table->datetime('tanggal');
             $table->integer('kuota');
             $table->timestamps();
         });

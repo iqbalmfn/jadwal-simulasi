@@ -52,7 +52,7 @@
                             </tr>
                             <tr>
                                 <th>Sesi</th>
-                                <td>{{ $schedule->nama_sesi }}</td>
+                                <td>{{ $schedule->nama_sesi }} - {{ date('H:i', strtotime($schedule->tanggal)) }} WIB</td>
                             </tr>
                             <tr>
                                 <th>Kuota Peserta</th>

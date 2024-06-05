@@ -42,7 +42,7 @@
             <div class="card-body fs-2">
                 <p>Selamat <strong>{{ $data->nama_lengkap }}</strong>, Anda berhasil menjadi peserta simulasi</p>
                 <p>Jadwal Anda tanggal <strong>{{ formatTanggalIndonesia($data->jadwal->tanggal) }}</strong> pada
-                    <strong>{{ $data->jadwal->nama_sesi }}</strong>
+                    <strong>{{ $data->jadwal->nama_sesi }}</strong> pukul <strong>{{ date('H:i', strtotime($data->jadwal->tanggal)) }} WIB</strong>
                 </p>
             </div>
             <div class="card-footer d-flex justify-content-evenly gap-2">

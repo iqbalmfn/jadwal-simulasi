@@ -53,7 +53,7 @@
                     </div>
                     <div class="mb-8">
                         <label class="form-label required">Tanggal</label>
-                        <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" value="{{ $data->tanggal }}" placeholder="Masukkan Tanggal">
+                        <input type="datetime-local" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" value="{{ $data->tanggal }}" placeholder="Masukkan Tanggal">
                         @error('tanggal')
                             <small class="invalid-feedback fs-8">
                                 {{ $message }}

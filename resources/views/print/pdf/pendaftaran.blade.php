@@ -26,6 +26,14 @@
             text-align: right;
         }
 
+        .pin {
+            position: fixed;
+            bottom: 460px;
+            left: 10px;
+            width: 250px;
+            height: auto;
+        }
+
         .qr-code {
             position: fixed;
             bottom: 370px;
@@ -90,9 +98,16 @@
             <tr>
                 <th style="font-size:18px;" width="30%" align="left">Sesi</th>
                 <td style="font-size:18px;" width="3%">:</td>
-                <td style="font-size:18px;">{{ $data->jadwal->nama_sesi }}</td>
+                <td style="font-size:18px;">{{ $data->jadwal->nama_sesi }} - {{ date('H:i', strtotime($data->jadwal->tanggal)) }} WIB</td>
             </tr>
         </table>
+    </div>
+
+    <div class="pin">
+        <div style="border: 2px solid black; text-align:center;padding:10px;">
+            <span>PIN SESI</span>
+            <br><br><br>
+        </div>
     </div>
 
     <div class="qr-code">
