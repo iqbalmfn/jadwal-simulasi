@@ -52,7 +52,7 @@
                         ->with('peserta')
                         ->wherePeriodId($date->period_id)
                         ->whereLocationId($date->location_id)
-                        ->where('tanggal', $date->tanggal)
+                        ->where('tanggal', 'like', '%'. date('Y-m-d', strtotime($date->tanggal)) .'%')
                         ->orderBy('nama_sesi')
                         ->get();
                 @endphp
