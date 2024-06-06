@@ -168,7 +168,8 @@ class PendaftaranController extends Controller
 
         // cetak QRCode
         $qrcode = QrCode::encoding('UTF-8')->size(150)->generate(route('verifikasi.index', ['id' => $data->id]));
-        $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', "", $qrcode); //replace to empty
+        //replace to empty
+        $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', "", $qrcode); 
 
         if (strpos($data->jadwal->lokasi->name, "Bandung") !== false) {
             $tanggal = "Bandung, " . formatTanggalIndonesia($data->created_at);

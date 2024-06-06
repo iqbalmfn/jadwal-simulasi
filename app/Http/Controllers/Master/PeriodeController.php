@@ -22,7 +22,6 @@ class PeriodeController extends Controller
             ->with('location_available.lokasi')
             ->orderByDesc('id')
             ->get();
-        // return $datas;
 
         $locations = Location::all()->pluck('name');
 
