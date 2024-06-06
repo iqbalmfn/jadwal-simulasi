@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                         <th>Sesi</th>
-                        <td>{{ $data->jadwal->nama_sesi }}</td>
+                        <td>{{ $data->jadwal->nama_sesi }} - {{ date('H:i', strtotime($data->jadwal->tanggal)) }}</td>
                     </tr>
                     <tr>
                         <th>Tanggal Registrasi</th>
