@@ -78,10 +78,11 @@
                                                 <div class="row">
                                                     @forelse ($schedules as $schedule)
                                                         <div class="col-12 col-md-3">
-                                                            <div class="card shadow bg-g">
-                                                                <div class="card-header d-flex justify-content-center">
-                                                                    <h3 class="card-title fw-bolder">
-                                                                        {{ $schedule->nama_sesi }}</h3>
+                                                            <div class="card shadow">
+                                                                <div class="d-flex justify-content-center border-bottom pt-5 pb-4">
+                                                                    <span class="card-title fw-bolder fs-3">
+                                                                        {{ $schedule->nama_sesi }}
+                                                                       </span>
                                                                 </div>
                                                                 <div class="card-body text-center p-5">
                                                                     <div class="d-flex flex-column align-items-center">
@@ -94,19 +95,15 @@
 
                                                                     </div>
                                                                 </div>
-                                                                <div class="card-footer d-grid">
-                                                                    <span
-                                                                        class="btn {{ $schedule->kuota <= $schedule->peserta->count() ? 'btn-danger' : 'btn-primary' }}"
-                                                                        {{ $schedule->kuota <= $schedule->peserta->count() ? 'disabled' : '' }}>
-                                                                        <div
-                                                                            class="d-flex justify-content-center align-items-center gap-3">
+                                                                <div class="card-footer {{ $schedule->kuota <= $schedule->peserta->count() ? 'bg-danger' : 'bg-primary' }} p-0">
+                                                                    <div
+                                                                            class="d-flex justify-content-center align-items-center gap-3 text-white p-5">
                                                                             <i
-                                                                                class="bi bi-{{ $schedule->kuota <= $schedule->peserta->count() ? 'x-lg' : 'check-circle' }}"></i>
+                                                                                class="bi bi-{{ $schedule->kuota <= $schedule->peserta->count() ? 'x-lg' : 'check-circle' }} text-white"></i>
                                                                             <span class="indicator-label">
                                                                                 {{ $schedule->kuota <= $schedule->peserta->count() ? 'Penuh' : 'Tersedia' }}
                                                                             </span>
                                                                         </div>
-                                                                        </a>
                                                                 </div>
                                                             </div>
                                                         </div>
