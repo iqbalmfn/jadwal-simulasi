@@ -61,8 +61,13 @@ class PendaftaranController extends Controller
                         })
                         ->with(['periode', 'lokasi'])
                         ->where('location_id', $session['location_id'])
-                        ->groupBy('tanggal')
-                        ->orderBy('tanggal')
+                        ->select(
+                            'schedules.*', 
+                            DB::raw('DATE_FORMAT(tanggal, "%Y-%m-%d") as formatted_date')
+                        )
+                        ->where('location_id', $session['location_id'])
+                        ->groupBy(DB::raw('DATE_FORMAT(tanggal, "%Y-%m-%d")'))
+                        ->orderBy('formatted_date')
                         ->get();
 
                     return view('enduser.pendaftaran.index', [
