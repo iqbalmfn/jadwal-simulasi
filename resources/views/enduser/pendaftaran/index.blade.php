@@ -74,17 +74,17 @@
                                         </div>
                                     @endif
 
-                                    <div class="card-header d-flex justify-content-center">
+                                    <div class="pt-5 pb-3 border-bottom">
                                         <h3 class="card-title fw-bolder">{{ $schedule->nama_sesi }}</h3>
                                     </div>
-                                    <div class="card-body text-center">
+                                    <div class="card-body text-center pt-0 pb-4">
                                         <div class="d-flex flex-column align-items-center">
                                             <span class="fw-bold"
                                                 style="font-size: 75px;">{{ $schedule->kuota - $schedule->peserta->count() }}</span>
                                             <span style="margin-top:-20px;" class="fs-4">Peserta</span>
                                         </div>
                                     </div>
-                                    <div class="card-footer d-grid">
+                                    <div class="card-footer d-grid pt-3 pb-3">
                                         <a href="{{ route('pendaftaran.form', ['id' => $schedule->id]) }}"
                                             class="btn btn-primary"
                                             {{ $schedule->kuota <= $schedule->peserta->count() ? 'disabled' : '' }}>
