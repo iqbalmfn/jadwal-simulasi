@@ -5,7 +5,7 @@
         <div class="text-dark order-2 order-md-1">
             <span class="text-muted fw-semibold me-1">2024&copy;</span>
             <span>made with ❤️ by </span>
-            <a href="https://kanreg3.id" target="_blank" class="text-gray-800 text-hover-primary">Kanreg III BKN</a>
+            <a href="https://kanreg3.id" target="_blank" class="text-gray-800 text-hover-primary">Kanreg III BKN Bandung</a>
         </div>
         <!--end::Copyright-->
     </div>

@@ -17,7 +17,7 @@
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
             <a href="{{ route('admin.index') }}" class="d-lg-none">
-                <img alt="Logo" src="/assets/images/logo-circle.png" class="h-40px" />
+                <img alt="Logo" src="{{ asset('assets/images/logo-circle.png') }}" class="h-40px" />
             </a>
         </div>
         <!--end::Mobile logo-->
