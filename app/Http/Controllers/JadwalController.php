@@ -55,8 +55,6 @@ class JadwalController extends Controller
 
         Schedule::create($input);
 
-        Session::flash('success', 'Data berhasil disimpan');
-
         return redirect()->back();
     }
 
