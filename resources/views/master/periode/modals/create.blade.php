@@ -28,9 +28,25 @@
                     <div class="mb-8">
                         <label class="form-label required">Lokasi Tersedia</label>
                         <input class="form-control" id="kt_tagify" name="lokasi_tersedia" placeholder="Masukkan Lokasi" required/>
-                        {{-- <input type="text" name="nama_periode" class="form-control @error('nama_periode') is-invalid @enderror"
-                            placeholder="Masukkan Nama Periode" value="{{ old('nama_periode') }}" required /> --}}
                         @error('lokasi_tersedia')
+                            <small class="invalid-feedback fs-8">
+                                {{ $message }}
+                            </small>
+                        @enderror
+                    </div>
+                    <div class="mb-8">
+                        <label class="form-label required">Tanggal Mulai</label>
+                        <input type="datetime-local" name="tgl_mulai" class="form-control @error('tgl_mulai') is-invalid @enderror" value="{{ old('tgl_mulai') }}" placeholder="Masukkan Tanggal Mulai">
+                        @error('tgl_mulai')
+                            <small class="invalid-feedback fs-8">
+                                {{ $message }}
+                            </small>
+                        @enderror
+                    </div>
+                    <div class="mb-8">
+                        <label class="form-label required">Tanggal Selesai</label>
+                        <input type="datetime-local" name="tgl_selesai" class="form-control @error('tgl_selesai') is-invalid @enderror" value="{{ old('tgl_selesai') }}" placeholder="Masukkan Tanggal Selesai">
+                        @error('tgl_selesai')
                             <small class="invalid-feedback fs-8">
                                 {{ $message }}
                             </small>

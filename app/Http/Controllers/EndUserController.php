@@ -11,6 +11,7 @@ class EndUserController extends Controller
 {
     public function __invoke()
     {
+        // return date('Y-m-d H:i:s', strtotime(now()));
         $period = Period::query()
             ->whereIsActive(1)
             ->with('location_available.lokasi.jadwal')

@@ -36,13 +36,17 @@ class PeriodeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_periode' => 'required',
-            'lokasi_tersedia' => 'required',
+            'nama_periode'      => 'required',
+            'tgl_mulai'         => 'required|date',
+            'tgl_selesai'       => 'required|date',
+            'lokasi_tersedia'   => 'required',
         ]);
 
         // simpan ke table periode
         $periode = Period::create([
             'nama_periode'  => $request->nama_periode,
+            'tgl_mulai'     => $request->tgl_mulai,
+            'tgl_selesai'   => $request->tgl_selesai,
             'is_active'     => $request->is_active ? $request->is_active : 0
         ]);
 
@@ -67,13 +71,17 @@ class PeriodeController extends Controller
     public function update(Request $request, Period $periode)
     {
         $request->validate([
-            'nama_periode' => 'required',
-            'lokasi_tersedia' => 'required',
+            'nama_periode'      => 'required',
+            'tgl_mulai'         => 'required|date',
+            'tgl_selesai'       => 'required|date',
+            'lokasi_tersedia'   => 'required',
         ]);
 
         // simpan ke table periode
         $periode->update([
             'nama_periode'  => $request->nama_periode,
+            'tgl_mulai'     => $request->tgl_mulai,
+            'tgl_selesai'   => $request->tgl_selesai,
             'is_active'     => $request->is_active ? $request->is_active : 0
         ]);
 

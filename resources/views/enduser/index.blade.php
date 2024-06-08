@@ -72,7 +72,7 @@
                     <i class="bi bi-ban fs-1 text-danger me-4"></i>
                     <div class="d-flex align-items-start flex-column">
                         <h4 class="mb-1 text-danger">Forbidden</h4>
-                        <span>Tidak ada periode yang aktif!</span>
+                        <span>Fitur pendaftaran tidak tersedia!</span>
                     </div>
                 </div>
             @endif

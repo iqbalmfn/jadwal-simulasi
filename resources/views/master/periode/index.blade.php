@@ -59,8 +59,9 @@
                 <thead>
                     <tr class="fw-bold fs-6 text-gray-800 px-7">
                         <th width="5%">No</th>
-                        <th width="25%">Nama Periode</th>
+                        <th width="20%">Nama Periode</th>
                         <th>Lokasi Tersedia</th>
+                        <th>Periode Pendaftaran</th>
                         <th width="10%">Status</th>
                         <th class="text-end" width="7%">Aksi</th>
                     </tr>
@@ -79,11 +80,22 @@
                                     @endforelse
                                 </div>
                             </td>
+                            <td><strong>{{ formatTanggalIndonesia($data->tgl_mulai) }},
+                                    {{ date('H:i', strtotime($data->tgl_mulai)) }} WIB</strong> s/d
+                                <strong>{{ formatTanggalIndonesia($data->tgl_selesai) }},
+                                    {{ date('H:i', strtotime($data->tgl_selesai)) }} WIB</strong>
+                            </td>
                             <td>
                                 @if ($data->is_active)
-                                    <a href="{{ route('admin.master.periode.set-status', ['periode' => $data->id]) }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Aktif"><i class="bi bi-check-circle-fill text-success fs-1"></i></a>
+                                    <a href="{{ route('admin.master.periode.set-status', ['periode' => $data->id]) }}"
+                                        data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse"
+                                        data-bs-placement="top" title="Aktif"><i
+                                            class="bi bi-check-circle-fill text-success fs-1"></i></a>
                                 @else
-                                    <a href="{{ route('admin.master.periode.set-status', ['periode' => $data->id]) }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Tidak Aktif"><i class="bi bi-x-circle-fill text-danger fs-1"></i></a>
+                                    <a href="{{ route('admin.master.periode.set-status', ['periode' => $data->id]) }}"
+                                        data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse"
+                                        data-bs-placement="top" title="Tidak Aktif"><i
+                                            class="bi bi-x-circle-fill text-danger fs-1"></i></a>
                                 @endif
                             </td>
                             <td class="text-end">
@@ -159,30 +171,30 @@
         });
     </script>
 
-{{-- tagify edit --}}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var locations = @json($locations);
+    {{-- tagify edit --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var locations = @json($locations);
 
-        @foreach ($datas as $data)
-            var input = document.querySelector("#kt_tagify_edit_{{ $data->id }}");
+            @foreach ($datas as $data)
+                var input = document.querySelector("#kt_tagify_edit_{{ $data->id }}");
 
-            // Initialize Tagify components on the above inputs
-            var tagify = new Tagify(input, {
-                whitelist: locations,
-                maxTags: 10,
-                enforceWhitelist: true,
-                dropdown: {
-                    maxItems: 20, // <- mixumum allowed rendered suggestions
-                    enabled: 0, // <- show suggestions on focus
-                    closeOnSelect: false // <- do not hide the suggestions dropdown once an item has been selected
-                }
-            });
+                // Initialize Tagify components on the above inputs
+                var tagify = new Tagify(input, {
+                    whitelist: locations,
+                    maxTags: 10,
+                    enforceWhitelist: true,
+                    dropdown: {
+                        maxItems: 20, // <- mixumum allowed rendered suggestions
+                        enabled: 0, // <- show suggestions on focus
+                        closeOnSelect: false // <- do not hide the suggestions dropdown once an item has been selected
+                    }
+                });
 
-            // Load existing tags into Tagify
-            var existingTags = @json($data->location_available->pluck('lokasi.name'));
-            tagify.addTags(existingTags);
-        @endforeach
-    });
-</script>
+                // Load existing tags into Tagify
+                var existingTags = @json($data->location_available->pluck('lokasi.name'));
+                tagify.addTags(existingTags);
+            @endforeach
+        });
+    </script>
 @endsection

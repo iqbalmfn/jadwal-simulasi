@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('periods', function (Blueprint $table) {
             $table->id();
             $table->string('nama_periode');
+            $table->dateTime('tgl_mulai');
+            $table->dateTime('tgl_selesai');
             $table->boolean('is_active')->default(0);
             $table->timestamps();
         });

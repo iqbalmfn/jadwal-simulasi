@@ -42,6 +42,24 @@
                             </small>
                         @enderror
                     </div>
+                    <div class="mb-8">
+                        <label class="form-label required">Tanggal Mulai</label>
+                        <input type="datetime-local" name="tgl_mulai" class="form-control @error('tgl_mulai') is-invalid @enderror" value="{{ $data->tgl_mulai }}" placeholder="Masukkan Tanggal Mulai">
+                        @error('tgl_mulai')
+                            <small class="invalid-feedback fs-8">
+                                {{ $message }}
+                            </small>
+                        @enderror
+                    </div>
+                    <div class="mb-8">
+                        <label class="form-label required">Tanggal Selesai</label>
+                        <input type="datetime-local" name="tgl_selesai" class="form-control @error('tgl_selesai') is-invalid @enderror" value="{{ $data->tgl_selesai }}" placeholder="Masukkan Tanggal Selesai">
+                        @error('tgl_selesai')
+                            <small class="invalid-feedback fs-8">
+                                {{ $message }}
+                            </small>
+                        @enderror
+                    </div>
                     <div>
                         <label class="form-label">Status Aktif</label>
                         <div class="form-check form-switch form-check-custom form-check-solid">

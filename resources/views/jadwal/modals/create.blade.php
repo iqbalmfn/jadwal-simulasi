@@ -17,8 +17,8 @@
                     <input type="hidden" name="type" value="create">
                     <div class="mb-8">
                         <label class="form-label">Periode</label>
-                        <input type="hidden" name="period_id" class="form-control" value="{{ $period->id }}">
-                        <input type="text" class="form-control" value="{{ $period->nama_periode }}" disabled>
+                        <input type="hidden" name="period_id" class="form-control" value="{{ $period?->id }}">
+                        <input type="text" class="form-control" value="{{ $period?->nama_periode }}" disabled>
                         @error('period_id')
                             <small class="invalid-feedback fs-8">
                                 {{ $message }}
@@ -31,7 +31,7 @@
                             class="form-control @error('location_id') is-invalid @enderror"
                             placeholder="Masukkan Nama Lokasi" value="{{ old('location_id') }}" required>
                             <option value="" selected disabled>-- Pilih Lokasi --</option>
-                            @foreach ($period->location_available as $location)
+                            @foreach ($period?->location_available as $location)
                                 <option value="{{ $location->location_id }}">{{ $location->lokasi->name }}</option>
                             @endforeach
                         </select>

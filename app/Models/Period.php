@@ -11,6 +11,8 @@ class Period extends Model
 
     protected $fillable = [
         'nama_periode',
+        'tgl_mulai',
+        'tgl_selesai',
         'is_active'
     ];
 
