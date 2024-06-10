@@ -6,13 +6,14 @@
     <title>@yield('title') - {{ env('APP_NAME') }} | Kanreg III BKN</title>
     <meta charset="utf-8" />
     <meta name="description" content="Aplikasi Jadwal Simulasi CAT Kanreg III BKN Bandung" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta property="og:locale" content="id_ID" />
-		<meta property="og:type" content="article" />
-		<meta property="og:title" content="Aplikasi Jadwal Simulasi CAT Kanreg III BKN Bandung" />
-		<meta property="og:url" content="{{ env('APP_URL') }}" />
-		<meta property="og:site_name" content="{{ env('APP_NAME') }} | Kanreg III BKN" />
-		<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:image" content="{{ asset('assets/images/logo-circle.png') }}" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Aplikasi Jadwal Simulasi CAT Kanreg III BKN Bandung" />
+    <meta property="og:url" content="{{ env('APP_URL') }}" />
+    <meta property="og:site_name" content="{{ env('APP_NAME') }} | Kanreg III BKN" />
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->

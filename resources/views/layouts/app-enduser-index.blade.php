@@ -8,6 +8,7 @@
     <title>{{ env('APP_NAME') }} | Kanreg III BKN</title>
     <meta name="description" content="Aplikasi Jadwal Simulasi CAT Kanreg III BKN Bandung" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:image" content="{{ asset('assets/images/logo-circle.png') }}" />
     <meta property="og:locale" content="id_ID" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Aplikasi Jadwal Simulasi CAT Kanreg III BKN Bandung" />
