@@ -2,7 +2,7 @@
 <html lang="en">
 	<!--begin::Head-->
 	<head><base href=""/>
-		<title>@yield('title') - Jadwal Simulasi | Kanreg III BKN</title>
+		<title>@yield('title') - {{ env('APP_NAME') }} | Kanreg III BKN</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="Aplikasi Jadwal Simulasi CAT Kanreg III BKN Bandung" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
