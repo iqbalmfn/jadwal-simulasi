@@ -105,7 +105,7 @@
 
     <div class="pin">
         <div style="border: 2px solid black; text-align:center;padding:10px;">
-            <span>PIN SESI</span>
+            <span>PIN PESERTA</span>
             <br><br><br>
         </div>
     </div>
