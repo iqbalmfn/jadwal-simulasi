@@ -21,7 +21,7 @@
                             <i class="bi bi-exclamation-octagon fs-1 text-danger me-4"></i>
                             <div class="d-flex flex-column align-items-start">
                                 <h4 class="mb-1 text-danger">Gagal Login</h4>
-                                <span>Username atau password tidak sesuai!</span>
+                                <span class="text-start">Username atau password tidak sesuai!</span>
                             </div>
                         </div>
                     @enderror
@@ -35,7 +35,7 @@
                             <i class="bi bi-exclamation-octagon fs-1 text-danger me-4"></i>
                             <div class="d-flex flex-column align-items-start">
                                 <h4 class="mb-1 text-danger">Tidak Tersedia</h4>
-                                <span>Kuota telah terpenuhi</span>
+                                <span class="text-start">Kuota telah terpenuhi</span>
                             </div>
                         </div>
                     @endif
@@ -72,7 +72,7 @@
                     <i class="bi bi-ban fs-1 text-danger me-4"></i>
                     <div class="d-flex align-items-start flex-column">
                         <h4 class="mb-1 text-danger">Forbidden</h4>
-                        <span>Fitur pendaftaran tidak tersedia!</span>
+                        <span class="text-start">Fitur pendaftaran tidak tersedia!</span>
                     </div>
                 </div>
             @endif
