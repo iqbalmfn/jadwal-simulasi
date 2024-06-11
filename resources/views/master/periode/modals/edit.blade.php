@@ -60,6 +60,23 @@
                             </small>
                         @enderror
                     </div>
+                    <div class="mb-8">
+                        <label class="form-label">Tipe Grid</label>
+                        <select type="text" name="tipe_grid"
+                            class="form-control @error('tipe_grid') is-invalid @enderror" required>
+                            @php
+                                $types = ['vertical', 'horizontal'];
+                            @endphp
+                            @foreach ($types as $type)
+                                <option value="{{ $type }}" {{ $type == $data->tipe_grid ? "selected" : "" }}>{{ $type }}</option>
+                            @endforeach
+                        </select>
+                        @error('tipe_grid')
+                            <small class="invalid-feedback fs-8">
+                                {{ $message }}
+                            </small>
+                        @enderror
+                    </div>
                     <div>
                         <label class="form-label">Status Aktif</label>
                         <div class="form-check form-switch form-check-custom form-check-solid">

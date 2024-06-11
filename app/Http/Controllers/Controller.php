@@ -15,9 +15,9 @@ class Controller extends BaseController
     public function checkPeriodeAktif($period_id) {
          // cek periode aktif
          $checkPeriod = Period::query()
-         ->whereId($period_id)
-         ->whereIsActive(1)
-         ->first();
+            ->whereId($period_id)
+            ->whereIsActive(1)
+            ->first();
 
          return $checkPeriod;
     }

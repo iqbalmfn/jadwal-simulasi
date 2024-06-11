@@ -13,6 +13,7 @@ class Period extends Model
         'nama_periode',
         'tgl_mulai',
         'tgl_selesai',
+        'tipe_grid',
         'is_active'
     ];
 

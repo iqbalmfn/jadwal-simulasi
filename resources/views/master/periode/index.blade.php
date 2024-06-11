@@ -62,6 +62,7 @@
                         <th width="20%">Nama Periode</th>
                         <th>Lokasi Tersedia</th>
                         <th>Periode Pendaftaran</th>
+                        <th>Grid</th>
                         <th width="10%">Status</th>
                         <th class="text-end" width="7%">Aksi</th>
                     </tr>
@@ -85,6 +86,7 @@
                                 <strong>{{ formatTanggalIndonesia($data->tgl_selesai) }},
                                     {{ date('H:i', strtotime($data->tgl_selesai)) }} WIB</strong>
                             </td>
+                            <td>{{ $data->tipe_grid }}</td>
                             <td>
                                 @if ($data->is_active)
                                     <a href="{{ route('admin.master.periode.set-status', ['periode' => $data->id]) }}"

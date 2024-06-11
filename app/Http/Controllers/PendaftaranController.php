@@ -72,7 +72,8 @@ class PendaftaranController extends Controller
 
                     return view('enduser.pendaftaran.index', [
                         'dates'     => $dates,
-                        'lokasi'    => $lokasi
+                        'lokasi'    => $lokasi,
+                        'period'    => $checkPeriod
                     ]);
                 }
             }

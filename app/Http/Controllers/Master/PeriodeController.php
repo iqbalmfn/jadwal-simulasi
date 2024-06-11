@@ -47,6 +47,7 @@ class PeriodeController extends Controller
             'nama_periode'  => $request->nama_periode,
             'tgl_mulai'     => $request->tgl_mulai,
             'tgl_selesai'   => $request->tgl_selesai,
+            'tipe_grid'     => $request->tipe_grid,
             'is_active'     => $request->is_active ? $request->is_active : 0
         ]);
 
@@ -82,6 +83,7 @@ class PeriodeController extends Controller
             'nama_periode'  => $request->nama_periode,
             'tgl_mulai'     => $request->tgl_mulai,
             'tgl_selesai'   => $request->tgl_selesai,
+            'tipe_grid'     => $request->tipe_grid,
             'is_active'     => $request->is_active ? $request->is_active : 0
         ]);
 

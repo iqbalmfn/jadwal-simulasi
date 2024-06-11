@@ -41,6 +41,20 @@
             width: 250px;
             height: auto;
         }
+
+        .tata-tertib {
+            position: fixed;
+            bottom: 200px;
+            left: 0px;s
+            height: auto;
+            width:100%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
     </style>
 </head>
 
@@ -113,6 +127,23 @@
     <div class="qr-code">
         <span style="font-size:15px;">{{ $tanggal }}</span>
         <div style="margin-top:10px;">{!! $qrcode !!}</div>
+    </div>
+
+    <div class="tata-tertib">
+        <table border="1" >
+            <tr>
+                <th align="left" style="padding:10px;">Tata Tertib</th>
+            </tr>
+            <tr>
+                <td style="padding:10px;">
+                    <ol>
+                        <li>Hadir 30 menit sebelum ujian</li>
+                        <li>Membawa KTP, atau kartu identitas lainnya</li>
+                        <li>Berpakaian formal, rapi dan sopan</li>
+                    </ol>
+                </td>
+            </tr>
+        </table>
     </div>
 </body>
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_periode');
             $table->dateTime('tgl_mulai');
             $table->dateTime('tgl_selesai');
+            $table->string('tipe_layout')->default('vertical');
             $table->boolean('is_active')->default(0);
             $table->timestamps();
         });
