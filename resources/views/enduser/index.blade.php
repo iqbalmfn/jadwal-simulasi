@@ -27,7 +27,7 @@
                     @enderror
 
                     <div class="text-center mb-11">
-                        <h1 class="text-dark fw-bolder mb-3">Aplikasi Jadwal Simulasi</h1>
+                        <h1 class="text-dark fw-bolder mb-3">Aplikasi {{ env('APP_NAME') }}</h1>
                     </div>
 
                     @if ($totalKuota <= $totalPeserta)
