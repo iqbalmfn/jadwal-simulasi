@@ -66,7 +66,7 @@
                 </form>
             @else
                 <div class="text-center mb-11">
-                    <h1 class="text-dark fw-bolder mb-3">Aplikasi Jadwal Simulasi</h1>
+                    <h1 class="text-dark fw-bolder mb-3">Aplikasi {{ env('APP_NAME') }}</h1>
                 </div>
                 <div class="alert alert-danger d-flex align-items-center p-5 mb-8 w-100">
                     <i class="bi bi-ban fs-1 text-danger me-4"></i>
