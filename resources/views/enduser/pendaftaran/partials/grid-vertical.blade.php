@@ -27,7 +27,8 @@
                         @endif
 
                         <div class="pt-5 pb-3 border-bottom">
-                            <h3 class="card-title fw-bolder">{{ $schedule->nama_sesi }}</h3>
+                            <h3 class="card-title fw-bolder">{{ $schedule->nama_sesi }}
+                                ({{ date('H.i', strtotime($schedule->tanggal)) }} WIB)</h3>
                         </div>
                         <div class="card-body text-center pt-0 pb-4">
                             <div class="d-flex flex-column align-items-center">

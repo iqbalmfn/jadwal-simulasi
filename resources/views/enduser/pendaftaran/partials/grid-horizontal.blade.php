@@ -29,7 +29,7 @@
                                 @endif
                                 <div class="d-flex justify-content-center border-bottom pt-5 pb-4">
                                     <span class="card-title fw-bolder fs-3">
-                                        {{ $schedule->nama_sesi }}
+                                        {{ $schedule->nama_sesi }} ({{ date('H.i', strtotime($schedule->tanggal)) }} WIB)
                                     </span>
                                 </div>
                                 <div class="card-body text-center p-5">
