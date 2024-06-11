@@ -124,6 +124,27 @@
         });
     </script>
 
+    <script>
+        document.getElementById('period-select').addEventListener('change', function() {
+            var periodId = this.value;
+            if (periodId) {
+                fetch(`/api/locations-by-period/${periodId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        var locationSelect = document.getElementById('location-select');
+                        locationSelect.innerHTML =
+                            '<option value="" selected disabled>-- Pilih Lokasi --</option>';
+                        data.forEach(location => {
+                            var option = document.createElement('option');
+                            option.value = location.id;
+                            option.textContent = location.name;
+                            locationSelect.appendChild(option);
+                        });
+                    });
+            }
+        });
+    </script>
+
     @if ($errors->any() && old('type') == 'create')
         <script type="text/javascript">
             $(window).on('load', function() {
