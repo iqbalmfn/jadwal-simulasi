@@ -42,7 +42,7 @@
                 <!--begin::Toolbar-->
                 <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
                     <!--begin::Add customer-->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create" {{ !$period ? 'disabled' : '' }}><i
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create"><i
                             class="bi bi-plus-lg"></i> Tambah</button>
                     <!--end::Add customer-->
                 </div>
@@ -80,7 +80,7 @@
                             <td>{{ $data->kuota }} peserta</td>
                             <td class="text-end">
                                 <div class="d-flex justify-content-end gap-2">
-                                    <a href="#" class="btn btn-sm btn-icon btn-outline btn-outline-primary {{ !$period ? 'disabled' : '' }}"
+                                    <a href="#" class="btn btn-sm btn-icon btn-outline btn-outline-primary"
                                         data-bs-toggle="modal" data-bs-target="#edit-{{ $data->id }}"><i
                                             class="bi bi-pencil"></i></a>
                                     <a href="#" class="btn btn-sm btn-icon btn-outline btn-outline-danger"
@@ -90,9 +90,7 @@
                             </td>
                         </tr>
 
-                        @if ($period)
-                            @include('jadwal.modals.edit')
-                        @endif
+                        @include('jadwal.modals.edit')
                         @include('jadwal.modals.delete')
                     @endforeach
                 </tbody>
@@ -102,9 +100,7 @@
         <!--end::Card body-->
     </div>
 
-    @if ($period)
-        @include('jadwal.modals.create')
-    @endif
+    @include('jadwal.modals.create')
 @endsection
 
 @section('scripts')

@@ -17,8 +17,14 @@
                     <input type="hidden" name="type" value="create">
                     <div class="mb-8">
                         <label class="form-label">Periode</label>
-                        <input type="hidden" name="period_id" class="form-control" value="{{ $period?->id }}">
-                        <input type="text" class="form-control" value="{{ $period?->nama_periode }}" disabled>
+                        <select type="text" name="period_id" id="period-select"
+                            class="form-control @error('period_id') is-invalid @enderror" placeholder="Masukkan Periode"
+                            value="{{ old('period_id') }}" required>
+                            <option value="" selected disabled>-- Pilih Periode --</option>
+                            @foreach ($periods as $period)
+                                <option value="{{ $period->id }}">{{ $period->nama_periode }}</option>
+                            @endforeach
+                        </select>
                         @error('period_id')
                             <small class="invalid-feedback fs-8">
                                 {{ $message }}
@@ -27,13 +33,10 @@
                     </div>
                     <div class="mb-8">
                         <label class="form-label required">Lokasi</label>
-                        <select type="text" name="location_id"
+                        <select id="location-select" name="location_id"
                             class="form-control @error('location_id') is-invalid @enderror"
-                            placeholder="Masukkan Nama Lokasi" value="{{ old('location_id') }}" required>
+                            placeholder="Masukkan Nama Lokasi" required>
                             <option value="" selected disabled>-- Pilih Lokasi --</option>
-                            @foreach ($period?->location_available as $location)
-                                <option value="{{ $location->location_id }}">{{ $location->lokasi->name }}</option>
-                            @endforeach
                         </select>
                         @error('location_id')
                             <small class="invalid-feedback fs-8">
@@ -43,7 +46,9 @@
                     </div>
                     <div class="mb-8">
                         <label class="form-label required">Nama Sesi</label>
-                        <input type="text" name="nama_sesi" class="form-control @error('nama_sesi') is-invalid @enderror" value="{{ old('nama_sesi') }}" placeholder="Masukkan Nama Sesi">
+                        <input type="text" name="nama_sesi"
+                            class="form-control @error('nama_sesi') is-invalid @enderror" value="{{ old('nama_sesi') }}"
+                            placeholder="Masukkan Nama Sesi">
                         @error('nama_sesi')
                             <small class="invalid-feedback fs-8">
                                 {{ $message }}
@@ -52,7 +57,9 @@
                     </div>
                     <div class="mb-8">
                         <label class="form-label required">Tanggal</label>
-                        <input type="datetime-local" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" value="{{ old('tanggal') }}" placeholder="Masukkan Tanggal">
+                        <input type="datetime-local" name="tanggal"
+                            class="form-control @error('tanggal') is-invalid @enderror" value="{{ old('tanggal') }}"
+                            placeholder="Masukkan Tanggal">
                         @error('tanggal')
                             <small class="invalid-feedback fs-8">
                                 {{ $message }}
@@ -61,7 +68,8 @@
                     </div>
                     <div class="mb-8">
                         <label class="form-label required">Kuota Peserta</label>
-                        <input type="number" name="kuota" class="form-control @error('kuota') is-invalid @enderror" value="{{ old('kuota') }}" placeholder="Masukkan Kuota Peserta">
+                        <input type="number" name="kuota" class="form-control @error('kuota') is-invalid @enderror"
+                            value="{{ old('kuota') }}" placeholder="Masukkan Kuota Peserta">
                         @error('kuota')
                             <small class="invalid-feedback fs-8">
                                 {{ $message }}

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
 use App\Models\Location;
+use App\Models\locationAvailable;
+use App\Models\Period;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -65,5 +67,22 @@ class LokasiController extends Controller
         Session::flash('success', 'Data berhasil dihapus');
 
         return redirect()->back()->withInput();
+    }
+
+    public function locationByPeriod($period_id) {
+        $period = Period::with('location_available.lokasi')->find($period_id);
+
+        if (!$period) {
+            return response()->json([]);
+        }
+
+        $locations = $period->location_available->map(function ($location) {
+            return [
+                'id' => $location->lokasi->id,
+                'name' => $location->lokasi->name,
+            ];
+        });
+
+        return response()->json($locations);
     }
 }

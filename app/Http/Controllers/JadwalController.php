@@ -21,16 +21,15 @@ class JadwalController extends Controller
             ->orderByDesc('id')
             ->get();
 
-        $period = Period::query()
-            ->whereIsActive(1)
+        $periods = Period::query()
             ->with('location_available.lokasi')
-            ->first();
+            ->get();
 
         return view('jadwal.index', [
             'title' => 'Jadwal Simulasi',
             'breadcrumbs' => $breadcrumbs,
             'datas' => $datas,
-            'period' => $period
+            'periods' => $periods
         ]);
     }
 
@@ -61,8 +60,8 @@ class JadwalController extends Controller
     public function update(Request $request, Schedule $jadwal)
     {
         $request->validate([
-            'period_id'     => 'required|numeric',
-            'location_id'   => 'required|numeric',
+            // 'period_id'     => 'required|numeric',
+            // 'location_id'   => 'required|numeric',
             'nama_sesi'   => [
                 'required',
                 Rule::unique('schedules')->where(function ($query) use ($request) {

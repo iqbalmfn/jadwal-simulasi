@@ -18,29 +18,11 @@
                     <input type="hidden" name="type" value="edit-{{ $data->id }}">
                     <div class="mb-8">
                         <label class="form-label">Periode</label>
-                        <input type="hidden" name="period_id" class="form-control" value="{{ $period?->id }}">
-                        <input type="text" class="form-control" value="{{ $period?->nama_periode }}" disabled>
-                        @error('period_id')
-                            <small class="invalid-feedback fs-8">
-                                {{ $message }}
-                            </small>
-                        @enderror
+                        <input type="text" class="form-control" value="{{ $data->periode->nama_periode }}" disabled>
                     </div>
                     <div class="mb-8">
                         <label class="form-label required">Lokasi</label>
-                        <select type="text" name="location_id"
-                            class="form-control @error('location_id') is-invalid @enderror"
-                            placeholder="Masukkan Nama Lokasi" required>
-                            <option value="" selected disabled>-- Pilih Lokasi --</option>
-                            @foreach ($period?->location_available as $location)
-                                <option value="{{ $location->location_id }}" {{ $data->location_id == $location->location_id ? 'selected' : '' }}>{{ $location->lokasi->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('location_id')
-                            <small class="invalid-feedback fs-8">
-                                {{ $message }}
-                            </small>
-                        @enderror
+                        <input type="text" class="form-control" value="{{ $data->lokasi->name }}" disabled>
                     </div>
                     <div class="mb-8">
                         <label class="form-label required">Nama Sesi</label>
