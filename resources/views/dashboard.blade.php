@@ -11,23 +11,14 @@
 
 @section('toolbar')
     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-        <!--begin::Title-->
         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">{{ $title }}
         </h1>
-        <!--end::Title-->
-        <!--begin::Breadcrumb-->
         <ul class="breadcrumb breadcrumb-dot fw-semibold fs-7 my-0 pt-1">
-            <!--begin::Item-->
             <li class="breadcrumb-item text-muted">
                 <a href="{{ route('admin.index') }}" class="text-muted text-hover-primary"><i class="bi bi-house"></i></a>
             </li>
-            <!--end::Item-->
-
-            <!--begin::Item-->
             <li class="breadcrumb-item text-muted">Dashboards</li>
-            <!--end::Item-->
         </ul>
-        <!--end::Breadcrumb-->
     </div>
 @endsection
 
@@ -123,36 +114,21 @@
                                 @empty
                                     <div
                                         class="alert alert-dismissible bg-light-danger d-flex flex-center flex-column py-10 px-10 px-lg-20">
-                                        <!--begin::Icon-->
                                         <i class="ki-duotone ki-information-5 fs-5tx text-danger mb-5"><span
                                                 class="path1"></span><span class="path2"></span><span
                                                 class="path3"></span></i>
-                                        <!--end::Icon-->
 
-                                        <!--begin::Wrapper-->
                                         <div class="text-center">
-                                            <!--begin::Title-->
                                             <h1 class="fw-bold mb-5 text-danger">Belum tersedia</h1>
-                                            <!--end::Title-->
-
-                                            <!--begin::Separator-->
                                             <div class="separator separator-dashed border-danger opacity-25 mb-5"></div>
-                                            <!--end::Separator-->
-
-                                            <!--begin::Content-->
                                             <div class="mb-9 text-gray-900">
                                                 Belum ada jadwal simulasi CAT yang tersedia.
                                             </div>
-                                            <!--end::Content-->
-
-                                            <!--begin::Buttons-->
                                             <div class="d-flex flex-center flex-wrap">
                                                 <a href="{{ route('admin.jadwal.index') }}"
                                                     class="btn btn-danger m-2">Tambah Jadwal</a>
                                             </div>
-                                            <!--end::Buttons-->
                                         </div>
-                                        <!--end::Wrapper-->
                                     </div>
                                 @endforelse
                             </div>
@@ -160,42 +136,25 @@
                     @empty
                     @endif
                 </div>
-                <!--end::Tab content-->
             </div>
-            <!--end::Card body-->
         </div>
     @else
         <div class="card h-md-100">
             <div class="card-body">
                 <div class="alert alert-dismissible bg-light-danger d-flex flex-center flex-column py-10 px-10 px-lg-20">
-                    <!--begin::Icon-->
                     <i class="ki-duotone ki-information-5 fs-5tx text-danger mb-5"><span class="path1"></span><span
                             class="path2"></span><span class="path3"></span></i>
-                    <!--end::Icon-->
 
-                    <!--begin::Wrapper-->
                     <div class="text-center">
-                        <!--begin::Title-->
                         <h1 class="fw-bold mb-5 text-danger">Belum tersedia</h1>
-                        <!--end::Title-->
-
-                        <!--begin::Separator-->
                         <div class="separator separator-dashed border-danger opacity-25 mb-5"></div>
-                        <!--end::Separator-->
-
-                        <!--begin::Content-->
                         <div class="mb-9 text-gray-900">
                             Belum ada periode Jadwal Simulasi CAT yang aktif.
                         </div>
-                        <!--end::Content-->
-
-                        <!--begin::Buttons-->
                         <div class="d-flex flex-center flex-wrap">
                             <a href="{{ route('admin.master.periode.index') }}" class="btn btn-danger m-2">Tambah Periode</a>
                         </div>
-                        <!--end::Buttons-->
                     </div>
-                    <!--end::Wrapper-->
                 </div>
             </div>
         </div>

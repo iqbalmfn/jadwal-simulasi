@@ -64,33 +64,17 @@
     </div>
 @empty
     <div class="alert alert-dismissible bg-light-danger d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
-        <!--begin::Icon-->
         <i class="ki-duotone ki-information-5 fs-5tx text-danger mb-5"><span class="path1"></span><span
                 class="path2"></span><span class="path3"></span></i>
-        <!--end::Icon-->
-
-        <!--begin::Wrapper-->
         <div class="text-center">
-            <!--begin::Title-->
             <h1 class="fw-bold mb-5 text-danger">Belum tersedia</h1>
-            <!--end::Title-->
-
-            <!--begin::Separator-->
             <div class="separator separator-dashed border-danger opacity-25 mb-5"></div>
-            <!--end::Separator-->
-
-            <!--begin::Content-->
             <div class="mb-9 text-gray-900">
                 Belum ada jadwal simulasi CAT yang tersedia.
             </div>
-            <!--end::Content-->
-
-            <!--begin::Buttons-->
             <div class="d-flex flex-center flex-wrap">
                 <a href="{{ route('enduser.index') }}" class="btn btn-danger m-2">Pilih Lokasi</a>
             </div>
-            <!--end::Buttons-->
         </div>
-        <!--end::Wrapper-->
     </div>
 @endforelse

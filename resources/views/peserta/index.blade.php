@@ -6,17 +6,12 @@
 
 @section('toolbar')
     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-        <!--begin::Title-->
         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">{{ $title }}
         </h1>
-        <!--end::Title-->
-        <!--begin::Breadcrumb-->
         <ul class="breadcrumb breadcrumb-dot fw-semibold fs-7 my-0 pt-1">
-            <!--begin::Item-->
             <li class="breadcrumb-item text-muted">
                 <a href="{{ route('admin.index') }}" class="text-muted text-hover-primary"><i class="bi bi-house"></i></a>
             </li>
-            <!--end::Item-->
             @forelse ($breadcrumbs as $breadcrumb)
                 @if (isset($breadcrumb['link']))
                     <li class="breadcrumb-item text-muted">
@@ -29,15 +24,12 @@
             @empty
             @endforelse
         </ul>
-        <!--end::Breadcrumb-->
     </div>
 @endsection
 
 @section('content')
     <div class="card">
-        <!--begin::Card body-->
         <div class="card-body pt-0">
-            <!--begin::Table-->
             <table id="kt_datatable_dom_positioning"
                 class="table table-striped table-row-bordered gy-3 gs-5 border rounded">
                 <thead>
@@ -83,9 +75,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <!--end::Table-->
         </div>
-        <!--end::Card body-->
     </div>
 @endsection
 
