@@ -7,10 +7,12 @@ use App\Http\Controllers\Master\LokasiController;
 use App\Http\Controllers\Master\PeriodeController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\ProxyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', EndUserController::class)->name('enduser.index');
 Route::get('verifikasi/{id}', [PendaftaranController::class, 'verifikasi'])->name('verifikasi.index');
+Route::post('cetak', [PendaftaranController::class, 'cetak'])->name('cetak.store');
 
 Route::prefix('pendaftaran')->name('pendaftaran.')->group(function () {
     Route::post('/pilih-lokasi', [PendaftaranController::class, 'pilihLokasi'])->name('pilih-lokasi');
@@ -29,9 +31,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::resource('periode', PeriodeController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::get('periode/{periode}/status', [PeriodeController::class, 'setStatus'])->name('periode.set-status');
     });
-    
+
     Route::resource('jadwal', JadwalController::class)->only(['index', 'store', 'update', 'destroy']);
     Route::resource('peserta', PesertaController::class)->only(['index']);
 });
 
-require __DIR__.'/auth.php';
+// Route::any('{path}', [ProxyController::class, 'proxy'])->where('path', '.*');
+
+require __DIR__ . '/auth.php';

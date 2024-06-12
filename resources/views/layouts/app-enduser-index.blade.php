@@ -100,6 +100,40 @@
         @yield('content')
     </div>
 
+    <div class="modal fade" tabindex="-1" id="cetak">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Cetak Kartu Peserta</h3>
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                </div>
+    
+                <form method="POST" action="{{ route('cetak.store') }}">
+                    <div class="modal-body">
+                        @csrf
+                        <div>
+                            <input type="number" name="nik" class="form-control @error('nik') is-invalid @enderror"
+                                placeholder="Masukkan NIK" value="{{ old('nik') }}" required />
+                            @error('nik')
+                                <small class="invalid-feedback fs-8">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="bi bi-x-lg me-1"></i>
+                            Batal</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-printer me-1"></i> Cetak</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!--begin::Javascript-->
     <script>
         var hostUrl = "assets/";

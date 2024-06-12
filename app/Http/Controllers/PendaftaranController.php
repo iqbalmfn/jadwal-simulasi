@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Biodata;
 use App\Models\Location;
+use App\Models\Period;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -205,5 +206,29 @@ class PendaftaranController extends Controller
         return view('enduser.verifikasi', [
             'data' => $data
         ]);
+    }
+
+    public function cetak(Request $request) {
+        // cek periode aktif
+        $period = Period::query()
+            ->whereIsActive(1)
+            ->first();
+
+        if ($period) {
+            $peserta = Biodata::query()
+                ->whereNik($request->nik)
+                ->whereHas('jadwal', function ($query) use ($period) {
+                    $query->wherePeriodId($period->id);
+                })
+            ->first();
+
+            if ($peserta) {
+                return redirect()->route('pendaftaran.print', ['id' => $peserta->id]);
+            } else {
+                Session::flash('error', 'NIK tidak terdaftar');
+                return redirect()->back();
+            }
+        }
+
     }
 }

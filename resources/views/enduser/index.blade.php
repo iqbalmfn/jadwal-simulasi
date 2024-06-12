@@ -57,7 +57,7 @@
                         @enderror
                     </div>
 
-                    <div class="d-grid mb-10">
+                    <div class="d-grid mb-5">
                         <button type="submit" id="kt_sign_in_submit" class="btn btn-primary"
                             {{ $totalKuota <= $totalPeserta ? 'disabled' : '' }}>
                             <span class="indicator-label">Daftar</span>
@@ -76,9 +76,16 @@
                     </div>
                 </div>
             @endif
+            <div class="form w-100">
+                <div class="d-grid mb-10">
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cetak">
+                        <span class="indicator-label">Cetak Kartu Peserta</span>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="d-flex justify-content-center px-lg-10">
             <p>2024 &copy; made with ❤️ by <a href="http://kanreg3.id" target="_blank">Kanreg III BKN Bandung</a></p>
         </div>
-    </div>
+    </div>    
 @endsection
