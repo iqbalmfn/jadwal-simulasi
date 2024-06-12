@@ -83,7 +83,7 @@
                                                                     <div class="card-body text-center p-5">
                                                                         <div class="d-flex flex-column align-items-center">
                                                                             <div class="fw-bold d-flex flex-column gap-0"
-                                                                                style="font-size: 65px;">
+                                                                                style="font-size: 55px;">
                                                                                 {{ $schedule->peserta->count() . '/' . $schedule->kuota }}
                                                                                 <span style="margin-top:-10px;"
                                                                                     class="fs-4">Peserta</span>
