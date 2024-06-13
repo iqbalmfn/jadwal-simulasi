@@ -235,7 +235,7 @@ class PendaftaranController extends Controller
         session()->forget('period_id');
         session()->forget('location_id');
         session()->forget('id');
-
+        return session();
         return redirect()->route('enduser.index');
     }
 }
