@@ -7,7 +7,6 @@ use App\Http\Controllers\Master\LokasiController;
 use App\Http\Controllers\Master\PeriodeController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PesertaController;
-use App\Http\Controllers\ProxyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', EndUserController::class)->name('enduser.index');
@@ -35,8 +34,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::resource('jadwal', JadwalController::class)->only(['index', 'store', 'update', 'destroy']);
     Route::resource('peserta', PesertaController::class)->only(['index']);
+    Route::get('peserta/print', [PesertaController::class, 'print'])->name('peserta.print');
 });
-
-// Route::any('{path}', [ProxyController::class, 'proxy'])->where('path', '.*');
 
 require __DIR__ . '/auth.php';

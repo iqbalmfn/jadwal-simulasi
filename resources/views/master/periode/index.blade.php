@@ -32,8 +32,10 @@
         <div class="card-header border-0 pt-6">
             <div class="card-toolbar">
                 <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create"><i
-                            class="bi bi-plus-lg"></i> Tambah</button>
+                    <div>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create"><i
+                                class="bi bi-plus-lg"></i> Tambah</button>
+                    </div>
                 </div>
             </div>
         </div>

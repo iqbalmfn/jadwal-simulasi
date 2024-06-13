@@ -29,6 +29,28 @@
 
 @section('content')
     <div class="card">
+        <div class="card-header border-0 pt-5 d-flex justify-content-between align-items-center">
+            <div>
+                <a href="{{ route('admin.peserta.print', $request->all()) }}" class="btn btn-primary btn-icon"><i class="bi bi-file-earmark-excel"
+                        title="Export Excel"></i></a>
+            </div>
+            <form action="" class="d-flex align-items-center gap-2">
+                <select name="period_id" class="form-control">
+                    <option value="" selected disabled>Pilih Periode</option>
+                    @foreach ($periods as $period)
+                        <option value="{{ $period->id }}" {{ $request->period_id == $period->id ? 'selected' : '' }}>
+                            {{ $period->nama_periode }}</option>
+                    @endforeach
+                </select>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary btn-icon"><i class="bi bi-funnel"></i></button>
+                    @if ($request->period_id)
+                        <a href="{{ route('admin.peserta.index') }}" class="btn btn-danger btn-icon"><i
+                                class="bi bi-arrow-clockwise"></i></a>
+                    @endif
+                </div>
+            </form>
+        </div>
         <div class="card-body pt-0">
             <table id="kt_datatable_dom_positioning"
                 class="table table-striped table-row-bordered gy-3 gs-5 border rounded">
@@ -64,10 +86,12 @@
                             <td>{{ $data->jadwal->lokasi->name }}</td>
                             <td>{{ formatTanggalIndonesia($data->jadwal->tanggal) }}</td>
                             <td>{{ $data->jadwal->nama_sesi }}</td>
-                            <td>{{ formatTanggalIndonesia($data->created_at) }}, {{ date('H:i', strtotime($data->created_at)) }} WIB</td>
+                            <td>{{ formatTanggalIndonesia($data->created_at) }},
+                                {{ date('H:i', strtotime($data->created_at)) }} WIB</td>
                             <td class="text-end">
                                 <div class="d-flex justify-content-end gap-2">
-                                    <a href="{{ route('pendaftaran.print', ['id' => $data->id]) }}" target="_blank" class="btn btn-sm btn-icon btn-outline btn-outline-primary">
+                                    <a href="{{ route('pendaftaran.print', ['id' => $data->id]) }}" target="_blank"
+                                        class="btn btn-sm btn-icon btn-outline btn-outline-primary">
                                         <i class="bi bi-printer"></i></a>
                                 </div>
                             </td>
