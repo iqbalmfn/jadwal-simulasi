@@ -46,7 +46,7 @@ class PesertaExport implements FromCollection, WithHeadings, WithMapping, WithCo
 
         return [
             $this->rowNumber,
-            $data->nama_lengkap,
+            $data->jadwal->lokasi->name,
             $data->jadwal->nama_sesi,
             formatTanggalIndonesia($data->jadwal->tanggal).','. date('H:i', strtotime($data->jadwal->tanggal)).' WIB',
             "'".$data->nik,
