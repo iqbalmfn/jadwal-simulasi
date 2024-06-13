@@ -18,10 +18,10 @@ Route::prefix('pendaftaran')->name('pendaftaran.')->group(function () {
     Route::post('/pilih-lokasi', [PendaftaranController::class, 'pilihLokasi'])->name('pilih-lokasi');
     Route::get('/', [PendaftaranController::class, 'index'])->name('index');
     Route::post('/', [PendaftaranController::class, 'store'])->name('store');
+    Route::get('/clear', [PendaftaranController::class, 'clear'])->name('clear');
     Route::get('{id}', [PendaftaranController::class, 'form'])->name('form');
     Route::get('/success/{id}', [PendaftaranController::class, 'success'])->name('success');
     Route::get('/print/{id}', [PendaftaranController::class, 'print'])->name('print');
-    Route::get('/clear', [PendaftaranController::class, 'clear'])->name('clear');
 });
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {

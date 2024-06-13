@@ -232,11 +232,10 @@ class PendaftaranController extends Controller
     }
 
     public function clear() {
-        return 'teds';
         session()->forget('period_id');
         session()->forget('location_id');
         session()->forget('id');
-        return session();
+
         return redirect()->route('enduser.index');
     }
 }
