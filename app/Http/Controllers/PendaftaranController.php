@@ -229,6 +229,13 @@ class PendaftaranController extends Controller
                 return redirect()->back();
             }
         }
+    }
 
+    public function clear() {
+        session()->forget('period_id');
+        session()->forget('location_id');
+        session()->forget('id');
+
+        return redirect()->route('enduser.index');
     }
 }

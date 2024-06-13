@@ -48,7 +48,7 @@
             <div class="card-footer d-flex justify-content-evenly gap-2">
                 <a href="{{ route('pendaftaran.print', ['id' => $data->id]) }}" target="_blank" class="btn btn-primary w-150px"><i class="bi bi-printer me-1"></i>
                     Cetak Kartu</a>
-                <a href="{{ route('enduser.index') }}" class="btn btn-danger w-150px"><i class="bi bi-x-lg me-1"></i>
+                <a href="{{ route('pendaftaran.clear') }}" class="btn btn-danger w-150px"><i class="bi bi-x-lg me-1"></i>
                     Keluar</a>
             </div>
         </div>
