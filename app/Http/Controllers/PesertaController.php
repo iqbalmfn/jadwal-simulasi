@@ -26,15 +26,14 @@ class PesertaController extends Controller
             ->first();
 
         $query = Biodata::query();
-        if ($request->period_id) {
-            $query->whereHas('jadwal', function ($q) use ($request) {
-                $q->wherePeriodId($request->period_id);
-            });
-        } else {
-            $query->whereHas('jadwal', function ($q) use ($period) {
+        $query->whereHas('jadwal', function ($q) use ($request, $period) {
+            if ($period) {
                 $q->wherePeriodId($period->id);
-            });
-        }
+            } else {
+                $q->wherePeriodId($request->period_id);
+            }
+        });
+
         $datas = $query->orderByDesc('created_at')->get();
 
         return view('peserta.index', [
@@ -96,15 +95,14 @@ class PesertaController extends Controller
             ->first();
 
         $query = Biodata::query();
-        if ($request->period_id) {
-            $query->whereHas('jadwal', function ($q) use ($request) {
-                $q->wherePeriodId($request->period_id);
-            });
-        } else {
-            $query->whereHas('jadwal', function ($q) use ($period) {
+        $query->whereHas('jadwal', function ($q) use ($request, $period) {
+            if ($period) {
                 $q->wherePeriodId($period->id);
-            });
-        }
+            } else {
+                $q->wherePeriodId($request->period_id);
+            }
+        });
+
         $datas = $query->with('jadwal.lokasi')
             ->orderByDesc('created_at')
             ->get();

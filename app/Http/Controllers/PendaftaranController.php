@@ -63,7 +63,7 @@ class PendaftaranController extends Controller
                         ->with(['periode', 'lokasi'])
                         ->where('location_id', $session['location_id'])
                         ->select(
-                            'schedules.*', 
+                            'schedules.*',
                             DB::raw('DATE_FORMAT(tanggal, "%Y-%m-%d") as formatted_date')
                         )
                         ->where('location_id', $session['location_id'])
@@ -171,7 +171,7 @@ class PendaftaranController extends Controller
         // cetak QRCode
         $qrcode = QrCode::encoding('UTF-8')->size(150)->generate(route('verifikasi.index', ['id' => $data->id]));
         //replace to empty
-        $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', "", $qrcode); 
+        $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', "", $qrcode);
 
         if (strpos($data->jadwal->lokasi->name, "Bandung") !== false) {
             $tanggal = "Bandung, " . formatTanggalIndonesia($data->created_at);
@@ -208,7 +208,8 @@ class PendaftaranController extends Controller
         ]);
     }
 
-    public function cetak(Request $request) {
+    public function cetak(Request $request)
+    {
         // cek periode aktif
         $period = Period::query()
             ->whereIsActive(1)
@@ -220,18 +221,24 @@ class PendaftaranController extends Controller
                 ->whereHas('jadwal', function ($query) use ($period) {
                     $query->wherePeriodId($period->id);
                 })
-            ->first();
+                ->first();
+        } else {
+            $peserta = Biodata::query()
+                ->whereNik($request->nik)
+                ->orderByDesc('created_at')
+                ->first();
+        }
 
-            if ($peserta) {
-                return redirect()->route('pendaftaran.print', ['id' => $peserta->id]);
-            } else {
-                Session::flash('error', 'NIK tidak terdaftar');
-                return redirect()->back();
-            }
+        if ($peserta) {
+            return redirect()->route('pendaftaran.print', ['id' => $peserta->id]);
+        } else {
+            Session::flash('error', 'NIK tidak terdaftar');
+            return redirect()->back();
         }
     }
 
-    public function clear() {
+    public function clear()
+    {
         session()->forget('period_id');
         session()->forget('location_id');
         session()->forget('id');

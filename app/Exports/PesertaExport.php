@@ -53,7 +53,7 @@ class PesertaExport implements FromCollection, WithHeadings, WithMapping, WithCo
             $data->nama_lengkap,
             $data->alamat,
             $data->email,
-            $data->no_hp,
+            "'".$data->no_hp,
             formatTanggalIndonesia($data->created_at).','. date('H:i', strtotime($data->created_at)).' WIB'
         ];
     }
